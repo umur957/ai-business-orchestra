@@ -1259,3 +1259,7 @@ if __name__ == "__main__":
     
     expense_result = expense_tool._run(sample_expenses, budget_total=10000)
     print("💰 Expense Tracking Result:", expense_result)
+
+
+# Tool aliases for HaruPlate crew compatibility  
+MalaysianSupplierTool = ExpenseTrackingTool  # Malaysian supplier tracking within expense system

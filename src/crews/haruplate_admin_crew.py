@@ -35,8 +35,10 @@ class HaruPlateAdminCrew:
         
     def _load_configurations(self):
         """Load agent and task configurations."""
-        agents_file = self.config_path / "haruplate_admin_agents.yaml"
-        tasks_file = self.config_path / "haruplate_admin_tasks.yaml"
+        # Config files are in the project root config directory
+        project_root = Path(__file__).parent.parent.parent
+        agents_file = project_root / "config" / "haruplate_admin_agents.yaml"
+        tasks_file = project_root / "config" / "haruplate_admin_tasks.yaml"
         
         if agents_file.exists():
             try:

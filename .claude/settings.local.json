@@ -10,7 +10,13 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(grep:*)",
       "Bash(git add:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(git commit:*)",
+      "WebFetch(domain:haruplate.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Read(//c/Projeler/**)",
+      "Bash(timeout:*)"
     ],
     "deny": [],
     "ask": []

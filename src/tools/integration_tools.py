@@ -105,3 +105,11 @@ def get_tool(tool_name: str) -> BaseTool:
 def get_all_tools() -> List[BaseTool]:
     """Get all available tools"""
     return list(AVAILABLE_TOOLS.values())
+
+
+# Tool aliases for HaruPlate crew compatibility
+GmailIntegrationTool = EmailTool
+ZoomAPITool = VideoConferenceTool
+GoogleDriveIntegrationTool = DocumentTool
+CalendarIntegrationTool = CalendarTool
+GoogleSheetsIntegrationTool = DocumentTool

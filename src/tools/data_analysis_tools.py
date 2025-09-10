@@ -57,3 +57,10 @@ class ReportGenerationTool(BaseTool):
             "sections": ["Executive Summary", "Key Metrics", "Recommendations"],
             "status": "generated_successfully"
         }
+
+
+# Tool aliases for HaruPlate crew compatibility
+ExcelAnalysisTool = NaturalLanguageQueryTool
+BusinessMetricsTool = SalesAnalysisTool
+HaruPlateMarketAnalysisTool = SalesAnalysisTool
+TrendAnalysisTool = SalesAnalysisTool

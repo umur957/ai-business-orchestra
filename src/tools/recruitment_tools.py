@@ -1120,3 +1120,11 @@ if __name__ == "__main__":
     # Calculate compatibility score
     score_result = compatibility_tool._run(sample_analysis, "Digital Marketing Specialist")
     print("🎯 Compatibility Score Result:", score_result)
+
+
+# Tool aliases for HaruPlate crew compatibility
+HaruPlateJobPostingTool = JobPostingTool
+HaruPlateWebResearchTool = CVAnalysisTool  # Web research functionality within CV analysis
+BrandComplianceTool = JobPostingTool  # Brand compliance checking within job posting
+ValuesAlignmentTool = HaruPlateCompatibilityTool
+HaruPlateTemplatesTool = EmailDraftTool

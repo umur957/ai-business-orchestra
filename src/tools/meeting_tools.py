@@ -49,3 +49,9 @@ class MeetingPrepTool(BaseTool):
             "talking_points": ["Key point 1", "Strategic consideration 2"],
             "action_items": ["Follow up on Q1 results"]
         }
+
+
+# Tool aliases for HaruPlate crew compatibility
+CalendarAnalysisTool = CalendarIntegrationTool
+BriefingGeneratorTool = MeetingPrepTool
+ParticipantAnalysisTool = MeetingResearchTool

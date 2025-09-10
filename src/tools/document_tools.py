@@ -42,3 +42,9 @@ class FileCategoricationTool(BaseTool):
 
     def _run(self, file_path: str) -> Dict[str, Any]:
         return {"category": "regulatory", "confidence": 0.9}
+
+
+# Tool aliases for HaruPlate crew compatibility
+DocumentCategorizationTool = FileCategoricationTool
+HaruPlateFilingTool = DocumentArchivistTool
+ContentAnalysisTool = OCRProcessingTool
