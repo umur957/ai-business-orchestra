@@ -268,7 +268,24 @@ depending on complexity and resource requirements.
 All solutions will maintain our commitment to professional service 
 and support your business objectives.
 
-Ready to orchestrate the perfect solution! 🎼"""
+        ready to orchestrate the perfect solution! 🎼"""
+
+    def run_scenario(self, scenario_type: str, context: str) -> str:
+        """Run a specific business scenario with given context"""
+        
+        scenario_requests = {
+            "recruitment": f"HR Recruitment: {context}",
+            "admin_task": f"Administrative Task: {context}", 
+            "crisis_management": f"Crisis Management: {context}",
+            "daily_operations": f"Daily Operations: {context}"
+        }
+        
+        if scenario_type not in scenario_requests:
+            raise ValueError(f"Invalid scenario type: {scenario_type}. "
+                           f"Valid types: {', '.join(scenario_requests.keys())}")
+        
+        request = scenario_requests[scenario_type]
+        return self.process_request(request)
 
 def main():
     """Main function to run Business Orchestra"""
