@@ -9,13 +9,24 @@ A powerful multi-agent AI system for business automation using CrewAI framework.
 
 ## ✨ Features
 
-- **🤖 Multi-Agent System**: Coordinated AI agents working together
+**🏗️ Enterprise Architecture:**
+- **📁 Modular Structure**: Organized codebase with `src/`, `config/`, `tools/` directories
+- **📋 YAML Configuration**: Separate `agents.yaml` and `tasks.yaml` for easy customization
+- **🔄 CrewAI Flows**: Advanced workflow management with human-in-the-loop approvals
+- **🛠️ Integration Tools**: Gmail, Calendar, Document management, Video conferencing tools
+- **👥 Specialized Crews**: Separate HR and Admin crews for focused operations
+
+**🤖 AI Agents:**
 - **👥 HR Agent**: Recruitment, candidate evaluation, and HR processes
 - **📋 Admin Agent**: Administrative tasks and process management  
 - **🎯 Conductor Agent**: Orchestrates and coordinates agent activities
+- **🔐 Human Reviewer**: Approval workflow for critical business decisions
+
+**🔧 Advanced Capabilities:**
 - **🔄 Dual Mode**: Simulation mode for testing + real AI mode for production
-- **🔧 Easy Configuration**: Simple environment variable setup
-- **📊 Detailed Reporting**: Comprehensive task execution reports
+- **� Human Approval**: Critical decisions require management approval
+- **📊 Enterprise Integration**: ERP, CRM, ATS, and business system connections
+- **📈 Analytics**: Performance monitoring and business intelligence
 
 ## 🚀 Getting Started
 
@@ -53,6 +64,29 @@ A powerful multi-agent AI system for business automation using CrewAI framework.
    # Edit .env file with your API keys
    ```
 
+### Project Structure
+
+```
+ai-business-orchestra/
+├── src/                    # Source code modules
+│   ├── agents/            # Individual agent implementations
+│   ├── tasks/             # Task definitions and factories
+│   ├── crews/             # Specialized crew configurations
+│   ├── flows/             # Workflow and approval systems
+│   └── tools/             # Integration tools and utilities
+├── config/                # YAML configuration files
+│   ├── agents.yaml        # Agent role and behavior definitions
+│   └── tasks.yaml         # Task templates and requirements
+├── orchestra.py           # Basic single-file implementation
+├── orchestra_enhanced.py  # Enterprise modular implementation
+├── requirements-clean.txt # Minimal dependencies
+└── requirements.txt       # Full development environment
+```
+   ```bash
+   cp .env.example .env
+   # Edit .env file with your API keys
+   ```
+
 ### Configuration
 
 Edit the `.env` file with your API credentials:
@@ -71,7 +105,7 @@ DEFAULT_LLM=openai    # Options: openai, gemini
 
 ## 💼 Usage
 
-### Basic Usage
+### Basic Usage (Simple Implementation)
 
 ```python
 from orchestra import BusinessOrchestra
@@ -82,6 +116,25 @@ orchestra = BusinessOrchestra()
 # Process different types of requests
 hr_result = orchestra.process_request("We need to hire a Senior Python Developer")
 admin_result = orchestra.process_request("Process this week's invoices")
+```
+
+### Enterprise Usage (Modular Implementation)
+
+```python
+from orchestra_enhanced import EnhancedBusinessOrchestra
+
+# Initialize enterprise orchestra
+orchestra = EnhancedBusinessOrchestra()
+
+# Use approval workflow for critical operations
+crisis_response = orchestra.process_request_with_approval(
+    "Critical database outage affecting customers", 
+    "crisis_management"
+)
+
+# Check system status
+status = orchestra.get_system_status()
+print(f"Enterprise mode: {status['modular_components']}")
 ```
 
 ### Scenario-Based Usage
@@ -104,12 +157,33 @@ daily_ops = orchestra.run_scenario("daily_operations",
 ### Command Line Usage
 
 ```bash
-# Run the built-in demo
+# Run basic demo
 python orchestra.py
 
-# Test all functionality
-python -c "from orchestra import BusinessOrchestra; o=BusinessOrchestra(); print(o.process_request('Test system'))"
+# Run enterprise demo with advanced features
+python orchestra_enhanced.py
+
+# Test specific scenarios
+python -c "from orchestra import BusinessOrchestra; o=BusinessOrchestra(); print(o.run_scenario('recruitment', 'Senior AI Engineer needed'))"
 ```
+
+## 🏗️ Enterprise Architecture
+
+### Modular Components
+
+| Component | Purpose | Files |
+|-----------|---------|-------|
+| **Agents** | Individual AI specialists | `src/agents/hr_agent.py`, `admin_agent.py`, `conductor_agent.py` |
+| **Tasks** | Reusable task templates | `src/tasks/hr_tasks.py`, `admin_tasks.py` |
+| **Crews** | Specialized teams | `src/crews/hr_crew.py`, `admin_crew.py` |
+| **Flows** | Approval workflows | `src/flows/human_approval_flow.py` |
+| **Tools** | External integrations | `src/tools/integration_tools.py` |
+
+### Configuration Management
+
+- **agents.yaml**: Define agent roles, goals, and behaviors
+- **tasks.yaml**: Configure task templates and requirements
+- **Environment variables**: API keys and system settings
 
 ## 🎯 Supported Scenarios
 
