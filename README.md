@@ -17,35 +17,7 @@ A powerful multi-agent AI system for business automation using CrewAI framework.
 - **🔧 Easy Configuration**: Simple environment variable setup
 - **📊 Detailed Reporting**: Comprehensive task execution reports
 
-## ✅ Tested and Verified
-
-The AI Business Orchestra has been comprehensively tested with **100% success rate** across all core scenarios:
-
-- � **HR Recruitment**: Advanced talent acquisition and strategic workforce planning
-- 💰 **Administrative Tasks**: Financial processing, document management, and operational coordination  
-- 🚨 **Crisis Management**: Emergency response planning and critical situation handling
-- 📅 **Daily Operations**: Multi-task coordination and timeline management
-- 🎪 **Event Management**: Large-scale logistics and vendor coordination
-- 📊 **Strategic Planning**: Long-term business growth and resource allocation
-
-### Test Results
-```
-============================================================
-📊 TEST RESULTS SUMMARY
-============================================================
-✅ Tests passed: 6/6
-❌ Tests failed: 0/6
-📈 Success rate: 100.0%
-
-🎉 ALL TESTS PASSED! System is working correctly.
-============================================================
-```
-
-Run your own tests:
-```bash
-python test_orchestra.py      # Automated test suite
-python demo_full.py          # Full capabilities demonstration
-```
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -95,12 +67,9 @@ GOOGLE_API_KEY=your_google_api_key_here
 # System Configuration
 USE_SIMULATION=False  # Set to True for testing without real AI calls
 DEFAULT_LLM=openai    # Options: openai, gemini
-```bash
-python test_orchestra.py      # Automated test suite
-python demo_full.py          # Full capabilities demonstration
 ```
 
-## � Getting Started
+## 💼 Usage
 
 ### Basic Usage
 
@@ -110,122 +79,111 @@ from orchestra import BusinessOrchestra
 # Initialize the orchestra
 orchestra = BusinessOrchestra()
 
-# Run a business scenario
-result = orchestra.run_scenario(
-    scenario_type="recruitment",
-    context="We need to hire a Senior Python Developer"
-)
-
-print(result)
+# Process different types of requests
+hr_result = orchestra.process_request("We need to hire a Senior Python Developer")
+admin_result = orchestra.process_request("Process this week's invoices")
 ```
 
-### Available Scenarios
+### Scenario-Based Usage
 
-- **recruitment**: Full recruitment process with candidate evaluation
-- **admin_task**: Administrative task handling and process management
-- **crisis_management**: Emergency response and crisis handling
-- **daily_operations**: Routine business operations coordination
+```python
+# Use specific scenarios for targeted responses
+recruitment = orchestra.run_scenario("recruitment", 
+    "Senior AI Engineer - 5+ years ML experience required")
+
+admin_task = orchestra.run_scenario("admin_task", 
+    "Organize quarterly board meeting for 50 attendees")
+
+crisis = orchestra.run_scenario("crisis_management", 
+    "Critical system outage affecting customer payments")
+
+daily_ops = orchestra.run_scenario("daily_operations", 
+    "Coordinate today's schedule and priority tasks")
+```
 
 ### Command Line Usage
 
 ```bash
-# Run recruitment scenario
+# Run the built-in demo
 python orchestra.py
 
-# The system will prompt you for scenario type and context
+# Test all functionality
+python -c "from orchestra import BusinessOrchestra; o=BusinessOrchestra(); print(o.process_request('Test system'))"
 ```
 
-## 🏗️ Architecture
+## 🎯 Supported Scenarios
 
-The system consists of three main AI agents:
+| Scenario Type | Description | Use Cases |
+|---------------|-------------|-----------|
+| `recruitment` | HR and talent acquisition | Job postings, candidate evaluation, hiring strategy |
+| `admin_task` | Administrative operations | Document processing, meeting organization, data analysis |
+| `crisis_management` | Emergency response | System outages, customer issues, urgent situations |
+| `daily_operations` | Routine coordination | Task scheduling, priority management, team coordination |
 
-### 👥 HR Agent
-- **Role**: Human Resources Specialist
-- **Responsibilities**: Recruitment, candidate evaluation, HR policies
-- **Tools**: Profile analysis, interview coordination, documentation
-
-### 📋 Admin Agent  
-- **Role**: Administrative Coordinator
-- **Responsibilities**: Process management, documentation, scheduling
-- **Tools**: Task organization, workflow optimization, reporting
-
-### 🎯 Conductor Agent
-- **Role**: Orchestra Conductor  
-- **Responsibilities**: Agent coordination, task delegation, quality assurance
-- **Tools**: Agent communication, workflow orchestration, performance monitoring
-
-## 🔧 Development
-
-### Project Structure
+## 🔧 Architecture
 
 ```
-ai-business-orchestra/
-├── orchestra.py          # Main application
-├── requirements.txt      # Full dependencies
-├── requirements-clean.txt # Minimal dependencies
-├── .env.example         # Environment template
-├── LICENSE              # MIT License
-└── README.md           # This file
+AI Business Orchestra
+├── 🎯 Conductor Agent     # Main coordinator and orchestrator
+├── 👥 HR Specialist       # Recruitment and human resources
+└── 📋 Admin Specialist    # Administrative and operational tasks
 ```
 
-### Adding New Scenarios
+### Agent Responsibilities
 
-1. Define the scenario in the `run_scenario` method
-2. Create specific tasks for each agent
-3. Configure the crew with appropriate agents and tasks
-4. Test in simulation mode first
+- **Conductor**: Analyzes requests, delegates tasks, ensures alignment with company values
+- **HR Specialist**: Handles recruitment, job descriptions, candidate evaluation
+- **Admin Specialist**: Manages documents, finances, meetings, and operational tasks
 
-### Contributing
+## 🛠️ Configuration Options
+
+### Environment Variables
+
+```env
+# Core Settings
+COMPANY_NAME=Your Company Name
+COMPANY_CULTURE_VALUES=professional, innovative, customer-focused
+COMPANY_TONE_OF_VOICE=professional, friendly, solution-oriented
+
+# AI Configuration
+OPENAI_API_KEY=sk-your-openai-key
+GOOGLE_API_KEY=your-google-api-key
+USE_SIMULATION=True|False
+DEFAULT_LLM=openai|gemini
+
+# Advanced Settings
+CREWAI_VERBOSE=True|False
+PROCESS_TYPE=sequential|hierarchical
+```
+
+### Simulation Mode
+
+For testing without API costs:
+
+```env
+USE_SIMULATION=True
+```
+
+This provides realistic mock responses without calling external AI APIs.
+
+## 📦 Dependencies
+
+### Minimal Requirements (`requirements-clean.txt`)
+- `crewai==0.177.0` - Multi-agent framework
+- `openai==1.57.2` - OpenAI API client
+- `google-generativeai==0.8.3` - Google Gemini API
+- `python-dotenv==1.0.1` - Environment configuration
+
+### Full Development (`requirements.txt`)
+All minimal requirements plus development and testing tools.
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📝 Examples
-
-### Recruitment Process
-
-```python
-orchestra = BusinessOrchestra()
-result = orchestra.run_scenario(
-    scenario_type="recruitment",
-    context="Senior Full-Stack Developer position for fintech startup"
-)
-```
-
-### Crisis Management
-
-```python
-orchestra = BusinessOrchestra()
-result = orchestra.run_scenario(
-    scenario_type="crisis_management", 
-    context="System outage affecting customer transactions"
-)
-```
-
-### Administrative Task
-
-```python
-orchestra = BusinessOrchestra()
-result = orchestra.run_scenario(
-    scenario_type="admin_task",
-    context="Organize quarterly team building event for 50 employees"
-)
-```
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-1. **API Key Errors**: Ensure your API keys are correctly set in `.env`
-2. **Import Errors**: Make sure all dependencies are installed
-3. **Rate Limiting**: Use simulation mode for testing to avoid API limits
-
-### Debug Mode
-
-Set `USE_SIMULATION=True` in `.env` to run without real API calls for testing.
 
 ## 📄 License
 
@@ -233,20 +191,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Umur Kızıldaş**
-
-- GitHub: [@umur957](https://github.com/umur957)
+**Umur Kızıldaş** ([@umur957](https://github.com/umur957))
 
 ## 🙏 Acknowledgments
 
-- [CrewAI](https://github.com/joaomdmoura/crewAI) for the amazing multi-agent framework
+- [CrewAI](https://github.com/joaomdmoura/crewAI) for the multi-agent framework
 - [OpenAI](https://openai.com/) for GPT models
 - [Google](https://ai.google.dev/) for Gemini models
 
-## 📊 Project Status
+## 📈 Roadmap
 
-This project is actively maintained. Feel free to open issues or contribute!
+- [ ] Web interface for easy interaction
+- [ ] Integration with popular business tools (Slack, Notion, etc.)
+- [ ] Custom workflow creation
+- [ ] Advanced reporting and analytics
+- [ ] Multi-language support
 
 ---
 
-**Made with ❤️ for business automation**
+*Transform your business operations with intelligent automation. Let the AI Business Orchestra handle routine tasks while you focus on strategic growth.*
