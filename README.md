@@ -1,45 +1,71 @@
-# 🎼 AI Business Orchestra
+# 🎼 HaruPlate HR & Admin Intelligence Orchestra
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![CrewAI](https://img.shields.io/badge/CrewAI-0.177.0-orange.svg)](https://github.com/joaomdmoura/crewAI)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/umur957/ai-business-orchestra/graphs/commit-activity)
 
-A powerful multi-agent AI system for business automation using CrewAI framework. Transform your business operations with intelligent agents that can handle HR processes, administrative tasks, and complex decision-making scenarios.
+*"Sincere, Family-Oriented AI for Child Nutrition Business Excellence"*
 
-## ✨ Features
+A comprehensive AI-powered business automation system specifically designed for HaruPlate - enabling management to focus on strategic thinking, product development, and brand vision while AI handles repetitive HR and administrative tasks.
 
-**🏗️ Enterprise Architecture:**
-- **📁 Modular Structure**: Organized codebase with `src/`, `config/`, `tools/` directories
-- **📋 YAML Configuration**: Separate `agents.yaml` and `tasks.yaml` for easy customization
-- **🔄 CrewAI Flows**: Advanced workflow management with human-in-the-loop approvals
-- **🛠️ Integration Tools**: Gmail, Calendar, Document management, Video conferencing tools
-- **👥 Specialized Crews**: Separate HR and Admin crews for focused operations
+## 🌱 Project Philosophy
 
-**🤖 AI Agents:**
-- **👥 HR Agent**: Recruitment, candidate evaluation, and HR processes
-- **📋 Admin Agent**: Administrative tasks and process management  
-- **🎯 Conductor Agent**: Orchestrates and coordinates agent activities
-- **🔐 Human Reviewer**: Approval workflow for critical business decisions
+**HaruPlate's Core Mission:** Like the founders of HaruPlate, managers should dedicate their time to strategic thinking, product development, and the brand vision—not to repetitive, time-consuming HR and administrative tasks.
 
-**🔧 Advanced Capabilities:**
-- **🔄 Dual Mode**: Simulation mode for testing + real AI mode for production
-- **� Human Approval**: Critical decisions require management approval
-- **📊 Enterprise Integration**: ERP, CRM, ATS, and business system connections
-- **📈 Analytics**: Performance monitoring and business intelligence
+This project embodies HaruPlate's values:
+- **Sincere, family-oriented** approach to all communications
+- **Child nutrition and natural products** mission focus
+- **Malaysian market** cultural sensitivity
+- **"Teammates"** terminology (not "candidates" or "employees")
+- **Values-first** compatibility scoring (60% values + 40% technical skills)
+
+## 🎼 Orchestra Architecture
+
+### Orchestra Conductor (Main Orchestrator)
+The brain of the system using **CrewAI Flows** for workflow orchestration:
+- Analyzes requests in natural language
+- Routes to appropriate expert crews (HR or Admin)
+- Manages human-in-the-loop approval workflows
+- Consolidates results with HaruPlate brand compliance
+
+### 👥 HR Expert Crew (4 Specialized Agents)
+Based on [crewAI-examples/recruitment](https://github.com/crewAIInc/crewAI-examples/tree/main/crews/recruitment) patterns:
+
+1. **Recruitment Strategist** - Creates job descriptions reflecting HaruPlate's values
+2. **Profile Analyst** - 60/40 scoring system (values alignment + technical skills)
+3. **Communications Coordinator** - Warm, family-oriented outreach via Gmail/Zoom
+4. **Quality Control Specialist** - Brand compliance ("teammates" not "candidates")
+
+### 🏢 Admin Expert Crew (4 Specialized Agents)
+Based on [umur957](https://github.com/umur957) automation patterns:
+
+1. **Financial Document Processor** - Malaysian supplier invoice automation → Google Sheets
+2. **Digital Archivist** - AI-powered document organization (inspired by [Custodian](https://github.com/umur957/Custodian))
+3. **Meeting Assistant** - Strategic briefings for child nutrition industry meetings
+4. **Data Analyst** - Singapore/Malaysia market insights from business data
+
+## 🔧 Real API Integrations
+
+Based on [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) integration patterns:
+
+- **Gmail API** - Invoice processing and recruitment communications
+- **Google Sheets** - Financial data and expense categorization with Malaysian supplier focus
+- **Zoom API** - Interview scheduling and meeting coordination
+- **Google Drive** - Document archival and HaruPlate-compliant organization
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - Python 3.11 or higher
-- OpenAI API key or Google Gemini API key
+- CrewAI framework
+- API credentials for Google services and Zoom (optional - runs in simulation mode)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/umur957/ai-business-orchestra.git
+   git clone https://github.com/your-repo/ai-business-orchestra.git
    cd ai-business-orchestra
    ```
 
@@ -51,236 +77,128 @@ A powerful multi-agent AI system for business automation using CrewAI framework.
 
 3. **Install dependencies**
    ```bash
-   # For minimal installation
-   pip install -r requirements-clean.txt
-   
-   # For full development environment
-   pip install -r requirements.txt
+   pip install -r requirements-haruplate.txt
    ```
 
-4. **Configure environment**
+4. **Set up environment variables** (optional for real API integration)
    ```bash
    cp .env.example .env
-   # Edit .env file with your API keys
+   # Edit .env with your API credentials
    ```
 
-### Project Structure
+### Quick Start
+
+Run the HaruPlate Orchestra:
+
+```bash
+python haruplate_orchestra.py
+```
+
+Or run the comprehensive test:
+
+```bash
+python test_haruplate_complete.py
+```
+
+## 💡 Usage Examples
+
+### HR Scenario: Digital Marketing Specialist Recruitment
+```python
+request = "We need to find an experienced Digital Marketing Specialist for the Malaysian market who understands child nutrition."
+result = orchestra.process_request(request)
+```
+
+### Admin Scenario: Invoice Processing
+```python
+request = "Process the latest invoices from our Malaysian suppliers and organize them in Google Sheets."
+result = orchestra.process_request(request)
+```
+
+### Meeting Preparation
+```python
+request = "Prepare a briefing for tomorrow's strategy meeting about expanding our child nutrition products in Singapore."
+result = orchestra.process_request(request)
+```
+
+### Data Analysis
+```python
+request = "Which was our most popular child nutrition product in Singapore this quarter?"
+result = orchestra.process_request(request)
+```
+
+## 📁 Project Structure
 
 ```
 ai-business-orchestra/
-├── src/                    # Source code modules
-│   ├── agents/            # Individual agent implementations
-│   ├── tasks/             # Task definitions and factories
-│   ├── crews/             # Specialized crew configurations
-│   ├── flows/             # Workflow and approval systems
-│   └── tools/             # Integration tools and utilities
-├── config/                # YAML configuration files
-│   ├── agents.yaml        # Agent role and behavior definitions
-│   └── tasks.yaml         # Task templates and requirements
-├── orchestra.py           # Basic single-file implementation
-├── orchestra_enhanced.py  # Enterprise modular implementation
-├── requirements-clean.txt # Minimal dependencies
-└── requirements.txt       # Full development environment
-```
-   ```bash
-   cp .env.example .env
-   # Edit .env file with your API keys
-   ```
-
-### Configuration
-
-Edit the `.env` file with your API credentials:
-
-```env
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key_here
-
-# Google Gemini Configuration  
-GOOGLE_API_KEY=your_google_api_key_here
-
-# System Configuration
-USE_SIMULATION=False  # Set to True for testing without real AI calls
-DEFAULT_LLM=openai    # Options: openai, gemini
+├── haruplate_orchestra.py          # Main entry point
+├── test_haruplate_complete.py      # Comprehensive test suite
+├── src/
+│   ├── flows/
+│   │   └── haruplate_orchestra_flow.py  # CrewAI Flow orchestration
+│   ├── crews/
+│   │   ├── haruplate_hr_crew.py         # HR Expert Crew
+│   │   └── haruplate_admin_crew.py      # Admin Expert Crew
+│   └── tools/
+│       └── real_api_integrations.py     # Gmail, Zoom, Sheets, Drive APIs
+├── config/
+│   ├── haruplate_hr_agents.yaml        # HR agent configurations
+│   ├── haruplate_hr_tasks.yaml         # HR task definitions
+│   ├── haruplate_admin_agents.yaml     # Admin agent configurations
+│   └── haruplate_admin_tasks.yaml      # Admin task definitions
+└── requirements-haruplate.txt          # Project dependencies
 ```
 
-## 💼 Usage
+## 🎯 Key Features
 
-### Basic Usage (Simple Implementation)
+### HaruPlate-Specific Implementation
+- **Brand Compliance**: Automatic checking for HaruPlate tone and terminology
+- **Malaysian Market Focus**: Cultural sensitivity and local supplier prioritization
+- **Values-Based Scoring**: 60% values alignment + 40% technical skills for recruitment
+- **Family-Oriented Communication**: Warm, sincere tone in all outreach
+- **Child Nutrition Focus**: Industry-specific knowledge and categorization
 
-```python
-from orchestra import BusinessOrchestra
+### Technical Excellence
+- **CrewAI Flows**: Modern workflow orchestration with state management
+- **Human-in-the-Loop**: Strategic decisions require management approval
+- **Real API Integration**: Production-ready connections to business tools
+- **Simulation Mode**: Full testing without external API dependencies
+- **Configuration-Driven**: YAML-based agent and task management
 
-# Initialize the orchestra
-orchestra = BusinessOrchestra()
+## 📊 Test Results
 
-# Process different types of requests
-hr_result = orchestra.process_request("We need to hire a Senior Python Developer")
-admin_result = orchestra.process_request("Process this week's invoices")
-```
+**Latest Test Score: 83.3% (GOOD - Minor improvements needed)**
 
-### Enterprise Usage (Modular Implementation)
+- ✅ HR Expert Crew: PASS
+- ✅ Admin Expert Crew: PASS  
+- ✅ API Integrations: PASS
+- ✅ API Functionality: PASS
+- ✅ Main Orchestra: PASS
+- ⚠️ Flow Integration: Needs refinement
 
-```python
-from orchestra_enhanced import EnhancedBusinessOrchestra
+## 🏗️ Architecture Inspiration
 
-# Initialize enterprise orchestra
-orchestra = EnhancedBusinessOrchestra()
+This project is built using proven patterns from leading repositories:
 
-# Use approval workflow for critical operations
-crisis_response = orchestra.process_request_with_approval(
-    "Critical database outage affecting customers", 
-    "crisis_management"
-)
-
-# Check system status
-status = orchestra.get_system_status()
-print(f"Enterprise mode: {status['modular_components']}")
-```
-
-### Scenario-Based Usage
-
-```python
-# Use specific scenarios for targeted responses
-recruitment = orchestra.run_scenario("recruitment", 
-    "Senior AI Engineer - 5+ years ML experience required")
-
-admin_task = orchestra.run_scenario("admin_task", 
-    "Organize quarterly board meeting for 50 attendees")
-
-crisis = orchestra.run_scenario("crisis_management", 
-    "Critical system outage affecting customer payments")
-
-daily_ops = orchestra.run_scenario("daily_operations", 
-    "Coordinate today's schedule and priority tasks")
-```
-
-### Command Line Usage
-
-```bash
-# Run basic demo
-python orchestra.py
-
-# Run enterprise demo with advanced features
-python orchestra_enhanced.py
-
-# Test specific scenarios
-python -c "from orchestra import BusinessOrchestra; o=BusinessOrchestra(); print(o.run_scenario('recruitment', 'Senior AI Engineer needed'))"
-```
-
-## 🏗️ Enterprise Architecture
-
-### Modular Components
-
-| Component | Purpose | Files |
-|-----------|---------|-------|
-| **Agents** | Individual AI specialists | `src/agents/hr_agent.py`, `admin_agent.py`, `conductor_agent.py` |
-| **Tasks** | Reusable task templates | `src/tasks/hr_tasks.py`, `admin_tasks.py` |
-| **Crews** | Specialized teams | `src/crews/hr_crew.py`, `admin_crew.py` |
-| **Flows** | Approval workflows | `src/flows/human_approval_flow.py` |
-| **Tools** | External integrations | `src/tools/integration_tools.py` |
-
-### Configuration Management
-
-- **agents.yaml**: Define agent roles, goals, and behaviors
-- **tasks.yaml**: Configure task templates and requirements
-- **Environment variables**: API keys and system settings
-
-## 🎯 Supported Scenarios
-
-| Scenario Type | Description | Use Cases |
-|---------------|-------------|-----------|
-| `recruitment` | HR and talent acquisition | Job postings, candidate evaluation, hiring strategy |
-| `admin_task` | Administrative operations | Document processing, meeting organization, data analysis |
-| `crisis_management` | Emergency response | System outages, customer issues, urgent situations |
-| `daily_operations` | Routine coordination | Task scheduling, priority management, team coordination |
-
-## 🔧 Architecture
-
-```
-AI Business Orchestra
-├── 🎯 Conductor Agent     # Main coordinator and orchestrator
-├── 👥 HR Specialist       # Recruitment and human resources
-└── 📋 Admin Specialist    # Administrative and operational tasks
-```
-
-### Agent Responsibilities
-
-- **Conductor**: Analyzes requests, delegates tasks, ensures alignment with company values
-- **HR Specialist**: Handles recruitment, job descriptions, candidate evaluation
-- **Admin Specialist**: Manages documents, finances, meetings, and operational tasks
-
-## 🛠️ Configuration Options
-
-### Environment Variables
-
-```env
-# Core Settings
-COMPANY_NAME=Your Company Name
-COMPANY_CULTURE_VALUES=professional, innovative, customer-focused
-COMPANY_TONE_OF_VOICE=professional, friendly, solution-oriented
-
-# AI Configuration
-OPENAI_API_KEY=sk-your-openai-key
-GOOGLE_API_KEY=your-google-api-key
-USE_SIMULATION=True|False
-DEFAULT_LLM=openai|gemini
-
-# Advanced Settings
-CREWAI_VERBOSE=True|False
-PROCESS_TYPE=sequential|hierarchical
-```
-
-### Simulation Mode
-
-For testing without API costs:
-
-```env
-USE_SIMULATION=True
-```
-
-This provides realistic mock responses without calling external AI APIs.
-
-## 📦 Dependencies
-
-### Minimal Requirements (`requirements-clean.txt`)
-- `crewai==0.177.0` - Multi-agent framework
-- `openai==1.57.2` - OpenAI API client
-- `google-generativeai==0.8.3` - Google Gemini API
-- `python-dotenv==1.0.1` - Environment configuration
-
-### Full Development (`requirements.txt`)
-All minimal requirements plus development and testing tools.
+- **[crewAI-examples/flows](https://github.com/crewAIInc/crewAI-examples/tree/main/flows)** - Orchestration workflows
+- **[crewAI-examples/recruitment](https://github.com/crewAIInc/crewAI-examples/tree/main/crews/recruitment)** - HR processes
+- **[umur957/n8n-invoice-automation](https://github.com/umur957/n8n-invoice-automation)** - Financial automation
+- **[umur957/Custodian](https://github.com/umur957/Custodian)** - Document management
+- **[awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)** - API integration patterns
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+This is a specialized system for HaruPlate's business needs. For general business automation, see the base project patterns above.
 
-## 📄 License
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
-
-**Umur Kızıldaş** ([@umur957](https://github.com/umur957))
-
 ## 🙏 Acknowledgments
 
-- [CrewAI](https://github.com/joaomdmoura/crewAI) for the multi-agent framework
-- [OpenAI](https://openai.com/) for GPT models
-- [Google](https://ai.google.dev/) for Gemini models
-
-## 📈 Roadmap
-
-- [ ] Web interface for easy interaction
-- [ ] Integration with popular business tools (Slack, Notion, etc.)
-- [ ] Custom workflow creation
-- [ ] Advanced reporting and analytics
-- [ ] Multi-language support
+- CrewAI framework for multi-agent orchestration
+- HaruPlate team for business requirements and values
+- Open source community for integration patterns and tools
 
 ---
 
-*Transform your business operations with intelligent automation. Let the AI Business Orchestra handle routine tasks while you focus on strategic growth.*
+*Built with ❤️ for HaruPlate's mission of providing sincere, family-oriented child nutrition solutions.*

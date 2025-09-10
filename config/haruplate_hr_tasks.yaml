@@ -1,0 +1,114 @@
+tasks:
+  create_job_description_task:
+    description: |
+      Create a comprehensive job description for the {position} role that perfectly reflects HaruPlate's 
+      brand identity and values. The job posting should:
+      
+      1. Use HaruPlate's sincere, family-oriented tone throughout
+      2. Emphasize our mission of child nutrition and natural products
+      3. Include Malaysian market cultural sensitivity requirements
+      4. Use 'teammate' terminology instead of 'candidate' or 'employee'
+      5. Highlight our warm, health-focused company culture
+      6. Include specific requirements relevant to child nutrition industry
+      7. Make the role sound appealing to people who genuinely care about children's health
+      
+      Context: {job_requirements}
+      Market Focus: Malaysian market with cultural sensitivity
+      Company Values: Sincere, family-oriented, child nutrition focused
+    expected_output: |
+      A complete, brand-compliant job description document containing:
+      - Compelling job title and overview reflecting HaruPlate values
+      - Detailed role responsibilities with child nutrition focus
+      - Required qualifications emphasizing both technical skills and values alignment
+      - HaruPlate company culture description
+      - Benefits and growth opportunities within our health-focused mission
+      - Call-to-action using warm, inviting language
+    agent: recruitment_strategist
+    
+  analyze_candidate_profiles_task:
+    description: |
+      Analyze all received CV/applications using HaruPlate's unique 60/40 compatibility scoring system:
+      
+      VALUES ALIGNMENT (60% weight):
+      - Genuine interest in child nutrition and health (20%)
+      - Experience with natural/organic products (15%) 
+      - Family-oriented mindset and values (15%)
+      - Cultural sensitivity and Malaysian market understanding (10%)
+      
+      TECHNICAL SKILLS (40% weight):
+      - Role-specific technical competencies (25%)
+      - Relevant industry experience (10%)
+      - Communication and collaboration skills (5%)
+      
+      For each potential teammate, provide detailed compatibility analysis with specific scores 
+      and justifications for both values alignment and technical fit.
+      
+      Input: {candidate_applications}
+      Position Requirements: {job_requirements}
+    expected_output: |
+      A comprehensive compatibility report containing:
+      - Individual compatibility scores for each potential teammate (out of 100)
+      - Detailed breakdown of 60% values + 40% technical scoring
+      - Top 5 recommended teammates with full profiles
+      - Specific examples of values alignment indicators found in their applications
+      - Technical skills assessment with gap analysis
+      - Cultural fit assessment for Malaysian market focus
+      - Recommendations for interview focus areas for each top teammate
+    agent: profile_analyst
+    
+  create_outreach_communications_task:
+    description: |
+      Draft personalized, warm email communications for the top-rated teammates identified in the 
+      compatibility analysis. Each email should:
+      
+      1. Use HaruPlate's sincere, family-oriented tone
+      2. Personalize based on the teammate's specific background and interests
+      3. Emphasize our child nutrition mission and how they could contribute
+      4. Invite them to learn more about joining our HaruPlate family
+      5. Include cultural sensitivity for Malaysian market context
+      6. Schedule initial conversations via Zoom integration
+      
+      Also create a follow-up sequence and interview coordination plan.
+      
+      Input: {top_candidates}
+      Position: {position}
+    expected_output: |
+      Complete outreach communication package including:
+      - Personalized initial contact emails for each top teammate (warm, values-focused)
+      - Follow-up email sequence templates
+      - Zoom meeting invitation templates with HaruPlate branding
+      - Interview scheduling coordination plan
+      - Cultural context notes for Malaysian market sensitivity
+      - Email subject line options that reflect our sincere, health-focused brand
+      - Response handling guidelines maintaining HaruPlate tone
+    agent: communications_coordinator
+    
+  quality_assurance_review_task:
+    description: |
+      Conduct comprehensive quality assurance review of all recruitment outputs to ensure 100% 
+      HaruPlate brand compliance. Review and provide feedback on:
+      
+      1. Job description brand alignment and tone
+      2. Compatibility analysis methodology and scoring accuracy
+      3. Email communications for proper HaruPlate voice and terminology
+      4. Overall process adherence to company values
+      
+      Implement feedback loop with specific recommendations for any improvements needed.
+      Check for:
+      - Consistent use of 'teammates' instead of 'candidates'
+      - Sincere, family-oriented tone throughout all communications
+      - Proper emphasis on child nutrition mission
+      - Cultural sensitivity for Malaysian market
+      - Warm, health-focused brand voice
+      
+      Input: All previous task outputs
+    expected_output: |
+      Complete brand compliance quality report including:
+      - Brand compliance score for each output (job description, analysis, communications)
+      - Specific feedback and revision recommendations for any non-compliant elements
+      - Approved final versions of all recruitment materials
+      - Brand consistency checklist completion
+      - Cultural sensitivity review results
+      - Final recommendation on readiness to proceed with outreach
+      - Process improvement suggestions for future recruitment cycles
+    agent: quality_control_specialist

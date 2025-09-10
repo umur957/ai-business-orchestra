@@ -1,0 +1,375 @@
+# HaruPlate HR & Admin Intelligence Orchestra - Task Definitions
+# Tasks designed to honor HaruPlate's sincere, family-oriented approach while delivering professional results
+
+# ====================
+# ORCHESTRA CONDUCTOR TASKS
+# ====================
+analyze_management_request:
+  description: >
+    Analyze incoming management request: "{request_text}"
+    
+    Determine:
+    1. Request type (hr, admin, or mixed workflow)
+    2. Priority level (low, normal, high, urgent)
+    3. Required expert teams and their roles
+    4. Expected deliverables and timeline
+    5. Whether human approval will be needed at any stage
+    6. Cultural considerations for Malaysian market context
+    
+    Consider HaruPlate's core focus areas:
+    - Child nutrition and natural product excellence
+    - Family-first business approach and sincere communication
+    - Malaysian market expansion and Southeast Asian growth
+    - Regulatory compliance for natural food products
+    
+    Provide structured analysis with clear workflow recommendations that honor our family business values.
+  expected_output: "Comprehensive request analysis with workflow routing recommendations and human approval points"
+  agent: "orchestra_conductor"
+
+coordinate_workflow_execution:
+  description: >
+    Coordinate execution of {workflow_type} workflow for request: "{request_text}"
+    
+    Orchestration responsibilities:
+    1. Monitor progress across all involved expert teams
+    2. Ensure consistent application of HaruPlate brand standards
+    3. Identify integration points where teams need to collaborate
+    4. Prepare consolidated results for management review
+    5. Implement human-in-the-loop approval at appropriate stages
+    6. Handle any conflicts or issues that arise during execution
+    
+    Maintain HaruPlate's sincere, family-oriented communication style throughout all interactions.
+    Ensure all outputs support our mission of providing exceptional child nutrition through natural products.
+  expected_output: "Coordinated workflow execution with consolidated results and next steps"
+  agent: "orchestra_conductor"
+
+# ====================
+# HR EXPERT CREW TASKS
+# ====================
+create_haruplate_job_description:
+  description: >
+    Create compelling job description for: "{position_title}"
+    Position requirements: {position_requirements}
+    Target market: {target_market}
+    
+    Job description must:
+    1. Reflect HaruPlate's sincere, family-oriented tone throughout
+    2. Emphasize our mission in child nutrition and natural products
+    3. Appeal specifically to the {target_market} job market
+    4. Use HaruPlate's preferred terminology ('teammates' not 'candidates', etc.)
+    5. Balance technical requirements with values alignment expectations
+    6. Include authentic company culture description
+    7. Create compelling value proposition for mission-driven professionals
+    
+    Research HaruPlate's website and social media presence to ensure authentic voice.
+    Consider cultural nuances and local market dynamics for effective positioning.
+  expected_output: "Complete HaruPlate-branded job description optimized for target market with cultural sensitivity"
+  agent: "hr_recruitment_strategist"
+
+conduct_brand_compliance_review:
+  description: >
+    Review HR content for HaruPlate brand compliance:
+    Content type: {content_type}
+    Content to review: "{content_text}"
+    
+    Quality control checklist:
+    1. Verify HaruPlate's sincere, family-oriented tone is maintained
+    2. Confirm correct terminology usage ('teammates' not 'candidates', etc.)
+    3. Ensure strong connection to child nutrition mission is present
+    4. Check cultural appropriateness for Malaysian and Southeast Asian markets
+    5. Validate brand consistency with HaruPlate's core values
+    6. Assess authenticity - does it sound genuinely like HaruPlate?
+    
+    Use self-evaluation loop methodology:
+    - Review content multiple times with different focus areas
+    - Provide specific, constructive feedback for any improvements needed
+    - Re-review after suggested changes are implemented
+    - Only approve when content authentically represents HaruPlate
+    
+    If issues are found, provide detailed revision recommendations with examples.
+  expected_output: "Comprehensive brand compliance report with specific feedback and approval status"
+  agent: "hr_quality_control_specialist"
+
+develop_recruitment_strategy:
+  description: >
+    Develop comprehensive recruitment strategy for: "{position_title}"
+    Target market: {target_market}
+    Timeline: {timeline}
+    
+    Strategy components:
+    1. Platform recommendations (LinkedIn, local Malaysian job sites, etc.)
+    2. Social media promotion strategy aligned with HaruPlate values
+    3. Professional network identification and outreach approach
+    4. Timeline optimization for maximum visibility and quality applications
+    5. Application tracking and evaluation metrics
+    6. Budget considerations for family business efficiency
+    
+    Focus on channels where mission-driven professionals are most active.
+    Consider Malaysian cultural preferences and professional networking patterns.
+    Ensure strategy attracts candidates who align with child nutrition and natural product values.
+  expected_output: "Complete recruitment strategy with platform recommendations, timeline, and success metrics"
+  agent: "hr_recruitment_strategist"
+
+analyze_candidate_compatibility:
+  description: >
+    Analyze candidate compatibility for position: "{position_title}"
+    Candidate information: {candidate_data}
+    
+    HaruPlate Compatibility Assessment:
+    1. Technical skills evaluation (40% weight)
+       - Relevant experience and qualifications
+       - Industry-specific knowledge
+       - Required competencies for role
+    
+    2. Values alignment assessment (60% weight)
+       - Passion for child nutrition and family wellness
+       - Interest in natural products and sustainable practices
+       - Communication style authenticity and warmth
+       - Cultural fit with family business environment
+       - Understanding of Malaysian/Southeast Asian market context
+    
+    3. Generate overall compatibility score (0-100)
+    4. Provide detailed feedback on strengths and development areas
+    5. Recommend interview focus areas
+    6. Suggest onboarding considerations if hired
+    
+    Prioritize candidates who demonstrate genuine alignment with HaruPlate's mission over those with perfect technical qualifications alone.
+  expected_output: "Detailed compatibility assessment with scoring, recommendations, and interview guidance"
+  agent: "hr_profile_analyst"
+
+draft_candidate_communication:
+  description: >
+    Draft {communication_type} communication for candidate: {candidate_name}
+    Position: {position_title}
+    Personalization details: {personalization_details}
+    Additional context: {additional_context}
+    
+    Communication requirements:
+    1. Warm, sincere tone that reflects HaruPlate's family-oriented values
+    2. Personal touches that show genuine interest in the individual
+    3. Clear connection to our child nutrition and natural products mission
+    4. Professional yet approachable language appropriate for Malaysian context
+    5. Specific details about why we think they'd fit our team family
+    6. Logistical information presented in a welcoming manner
+    
+    Email should feel like a sincere invitation to join something meaningful, not a corporate form letter.
+    Include appropriate cultural sensitivity for Malaysian and regional candidates.
+    Maintain HaruPlate's authentic voice throughout.
+  expected_output: "Personalized, warm communication that embodies HaruPlate's sincere family business approach"
+  agent: "hr_communications_coordinator"
+
+# ====================
+# ADMIN EXPERT CREW TASKS
+# ====================
+process_financial_documents:
+  description: >
+    Process financial documents for HaruPlate:
+    Document source: {document_source}
+    Processing scope: {processing_scope}
+    
+    Invoice processing workflow:
+    1. Extract invoices from designated email accounts or file sources
+    2. Apply OCR technology for text and data extraction
+    3. Categorize expenses according to HaruPlate business priorities:
+       - Raw materials (organic ingredients, natural additives)
+       - Packaging (sustainable, child-safe materials)
+       - Research & development (nutrition studies, product testing)
+       - Marketing (family-focused campaigns, educational content)
+       - Operations (facility, equipment, compliance)
+    4. Validate vendor information against approved supplier database
+    5. Verify amounts and check for calculation accuracy
+    6. Ensure compliance with natural product regulations
+    7. Flag any discrepancies or unusual expenses for review
+    
+    Maintain HaruPlate's attention to detail and quality standards throughout processing.
+    Consider our focus on natural products and child safety in all validations.
+  expected_output: "Processed invoice data with categorization, validation results, and compliance confirmation"
+  agent: "financial_document_processor"
+
+organize_document_archive:
+  description: >
+    Organize HaruPlate's digital document archive:
+    Document scope: {document_scope}
+    Organization criteria: {organization_criteria}
+    
+    Document management workflow:
+    1. Scan and classify all document types:
+       - Regulatory compliance (certifications, approvals, safety data)
+       - Product development (research, formulations, testing results)
+       - Marketing materials (campaigns, brand guidelines, content)
+       - Supplier documentation (contracts, certifications, quality reports)
+       - Financial records (invoices, contracts, audit materials)
+       - Meeting minutes and strategic planning documents
+    
+    2. Apply HaruPlate naming convention: {date}_{category}_{description}_{version}
+    3. Create logical folder structure supporting family business operations
+    4. Ensure regulatory documents remain easily accessible for audits
+    5. Organize by business function while maintaining cross-reference capability
+    6. Archive outdated versions with proper version control
+    7. Create searchable metadata and document summaries
+    
+    Prioritize documents supporting child nutrition mission and Malaysian market expansion.
+  expected_output: "Organized document structure with improved accessibility and compliance readiness"
+  agent: "digital_archivist"
+
+prepare_meeting_intelligence:
+  description: >
+    Prepare comprehensive meeting briefing for:
+    Meeting topic: {meeting_topic}
+    Participants: {meeting_participants}
+    Meeting date: {meeting_date}
+    
+    Strategic preparation workflow:
+    1. Research all meeting participants and their professional backgrounds
+    2. Review agenda items and gather relevant supporting context
+    3. Identify recent industry developments affecting HaruPlate:
+       - Natural products industry trends
+       - Child nutrition research updates
+       - Malaysian market regulatory changes
+       - Southeast Asian expansion opportunities
+    4. Search internal knowledge base for related discussions and past decisions
+    5. Compile relevant financial data, market research, and performance metrics
+    6. Prepare talking points aligned with HaruPlate's family business values
+    7. Identify potential discussion topics and prepare supporting materials
+    8. Create strategic recommendations based on gathered intelligence
+    
+    Present all information in family-business-friendly format that supports values-driven decision making.
+  expected_output: "Comprehensive meeting briefing with strategic insights and discussion framework"
+  agent: "meeting_assistant"
+
+analyze_business_data:
+  description: >
+    Analyze HaruPlate business data to answer: "{analysis_question}"
+    Data sources: {data_sources}
+    Analysis timeframe: {timeframe}
+    
+    Data analysis workflow:
+    1. Interpret business question in context of HaruPlate's mission and priorities
+    2. Identify and access relevant data sources:
+       - Sales performance data
+       - Customer satisfaction metrics
+       - Product performance indicators
+       - Marketing campaign effectiveness
+       - Supply chain and quality metrics
+       - Financial performance data
+    3. Apply appropriate analytical methods and statistical techniques
+    4. Consider Malaysian market specifics and cultural factors
+    5. Validate data accuracy and handle any inconsistencies
+    6. Generate insights that support strategic decision making
+    7. Create visualizations that clearly communicate findings
+    8. Develop actionable recommendations aligned with family business values
+    
+    Focus on insights that help HaruPlate better serve families and expand positive impact on child nutrition.
+    Present complex analysis in clear, accessible format for family business leadership.
+  expected_output: "Comprehensive data analysis with actionable insights and strategic recommendations"
+  agent: "data_analyst"
+
+# ====================
+# WORKFLOW-SPECIFIC TASKS
+# ====================
+execute_recruitment_workflow:
+  description: >
+    Execute complete recruitment workflow for: "{position_title}"
+    Requirements: {position_requirements}
+    Target market: {target_market}
+    Timeline: {timeline}
+    
+    End-to-end recruitment process:
+    1. Create compelling, HaruPlate-branded job description
+    2. Conduct brand compliance review and refinement
+    3. Develop and implement recruitment strategy
+    4. Monitor application flow and conduct initial screening
+    5. Analyze candidate compatibility using HaruPlate scoring system
+    6. Prepare shortlist with detailed candidate profiles
+    7. Draft personalized outreach communications
+    8. Coordinate interview scheduling and logistics
+    9. Prepare interview evaluation framework
+    10. Compile final recommendations for management review
+    
+    Maintain HaruPlate's sincere, family-oriented approach throughout entire process.
+    Prioritize values alignment while ensuring technical competency requirements are met.
+  expected_output: "Complete recruitment package ready for management review and candidate outreach"
+  agents: 
+    - "hr_recruitment_strategist"
+    - "hr_quality_control_specialist"
+    - "hr_profile_analyst"
+    - "hr_communications_coordinator"
+
+execute_financial_processing_workflow:
+  description: >
+    Execute complete financial document processing workflow:
+    Processing scope: {processing_scope}
+    Document sources: {document_sources}
+    
+    Financial processing pipeline:
+    1. Retrieve and process all financial documents from specified sources
+    2. Extract structured data using OCR and AI parsing
+    3. Categorize expenses according to HaruPlate business model
+    4. Validate data accuracy and ensure regulatory compliance
+    5. Integrate processed data into Google Sheets tracking system
+    6. Archive original documents with proper naming and organization
+    7. Generate financial insights and trend analysis
+    8. Identify cost optimization opportunities
+    9. Flag any issues requiring management attention
+    10. Prepare comprehensive financial summary report
+    
+    Maintain transparency and accuracy standards that support HaruPlate's family business integrity.
+    Focus on insights that support strategic decision making for sustainable growth.
+  expected_output: "Complete financial processing results with insights and actionable recommendations"
+  agents:
+    - "financial_document_processor"
+    - "data_analyst"
+
+# ====================
+# HUMAN-IN-THE-LOOP TASKS
+# ====================
+prepare_management_approval_request:
+  description: >
+    Prepare approval request for HaruPlate management:
+    Workflow type: {workflow_type}
+    Results summary: {results_summary}
+    Approval items: {approval_items}
+    
+    Approval preparation:
+    1. Summarize completed work and key deliverables
+    2. Highlight items requiring management review and approval
+    3. Present information in HaruPlate's family-business communication style
+    4. Include specific next steps contingent on approval
+    5. Provide context for decision making within our values framework
+    6. Suggest timeline for review and response
+    7. Prepare follow-up actions for both approval and modification scenarios
+    
+    Frame approval request as collaborative discussion rather than formal business process.
+    Emphasize how proposed actions support HaruPlate's mission and family business values.
+  expected_output: "Warm, comprehensive approval request that facilitates family business decision making"
+  agent: "orchestra_conductor"
+
+# ====================
+# TASK CONFIGURATION
+# ====================
+default_expected_output_format: "markdown"
+max_execution_time: 300  # seconds
+allow_delegation: true
+verbose: true
+
+# Task categories for workflow routing
+task_categories:
+  hr_workflow:
+    - "create_haruplate_job_description"
+    - "develop_recruitment_strategy" 
+    - "analyze_candidate_compatibility"
+    - "draft_candidate_communication"
+    - "conduct_brand_compliance_review"
+    - "execute_recruitment_workflow"
+    
+  admin_workflow:
+    - "process_financial_documents"
+    - "organize_document_archive"
+    - "prepare_meeting_intelligence"
+    - "analyze_business_data"
+    - "execute_financial_processing_workflow"
+    
+  coordination:
+    - "analyze_management_request"
+    - "coordinate_workflow_execution"
+    - "prepare_management_approval_request"

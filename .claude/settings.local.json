@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "mcp__gemini-cli__ask-gemini",
+      "Bash(gemini:*)",
+      "Bash(python test_haruplate_orchestra.py)",
+      "Bash(python:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(grep:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
