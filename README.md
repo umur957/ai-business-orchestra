@@ -65,7 +65,7 @@ Based on [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) in
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-repo/ai-business-orchestra.git
+   git clone https://github.com/umur957/ai-business-orchestra.git
    cd ai-business-orchestra
    ```
 
