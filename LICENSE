@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Umur Kızıldaş (umur957)
+Copyright (c) 2025 UMUR KIZILDAS (umur957)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,27 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+================================================================================
+THIRD-PARTY COMPONENTS AND LICENSES
+================================================================================
+
+This project includes components and patterns inspired by the following projects:
+
+1. CrewAI Examples - Recruitment Patterns
+   Repository: https://github.com/crewAIInc/crewAI-examples
+   License: MIT License
+   Copyright (c) 2024 CrewAI
+
+2. Custodian - Document Management
+   Repository: https://github.com/umur957/Custodian
+   License: MIT License
+   Copyright (c) 2024 UMUR KIZILDAS
+
+3. Awesome LLM Apps - Integration Patterns
+   Repository: https://github.com/Shubhamsaboo/awesome-llm-apps
+   License: Apache License 2.0
+   Copyright (c) 2024 Shubham Saboo
+
+For complete license texts of third-party components, please refer to their
+respective repositories.
