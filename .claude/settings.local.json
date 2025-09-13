@@ -16,7 +16,8 @@
       "WebFetch(domain:www.instagram.com)",
       "WebFetch(domain:www.linkedin.com)",
       "Read(//c/Projeler/**)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []

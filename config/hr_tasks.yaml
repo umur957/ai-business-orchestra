@@ -1,10 +1,10 @@
 tasks:
   create_job_description_task:
     description: |
-      Create a comprehensive job description for the {position} role that perfectly reflects HaruPlate's 
+      Create a comprehensive job description for the {position} role that perfectly reflects Business's 
       brand identity and values. The job posting should:
       
-      1. Use HaruPlate's sincere, family-oriented tone throughout
+      1. Use Business's sincere, family-oriented tone throughout
       2. Emphasize our mission of child nutrition and natural products
       3. Include Malaysian market cultural sensitivity requirements
       4. Use 'teammate' terminology instead of 'candidate' or 'employee'
@@ -17,17 +17,17 @@ tasks:
       Company Values: Sincere, family-oriented, child nutrition focused
     expected_output: |
       A complete, brand-compliant job description document containing:
-      - Compelling job title and overview reflecting HaruPlate values
+      - Compelling job title and overview reflecting Business values
       - Detailed role responsibilities with child nutrition focus
       - Required qualifications emphasizing both technical skills and values alignment
-      - HaruPlate company culture description
+      - Business company culture description
       - Benefits and growth opportunities within our health-focused mission
       - Call-to-action using warm, inviting language
     agent: recruitment_strategist
     
   analyze_candidate_profiles_task:
     description: |
-      Analyze all received CV/applications using HaruPlate's unique 60/40 compatibility scoring system:
+      Analyze all received CV/applications using Business's unique 60/40 compatibility scoring system:
       
       VALUES ALIGNMENT (60% weight):
       - Genuine interest in child nutrition and health (20%)
@@ -61,10 +61,10 @@ tasks:
       Draft personalized, warm email communications for the top-rated teammates identified in the 
       compatibility analysis. Each email should:
       
-      1. Use HaruPlate's sincere, family-oriented tone
+      1. Use Business's sincere, family-oriented tone
       2. Personalize based on the teammate's specific background and interests
       3. Emphasize our child nutrition mission and how they could contribute
-      4. Invite them to learn more about joining our HaruPlate family
+      4. Invite them to learn more about joining our Business family
       5. Include cultural sensitivity for Malaysian market context
       6. Schedule initial conversations via Zoom integration
       
@@ -76,21 +76,21 @@ tasks:
       Complete outreach communication package including:
       - Personalized initial contact emails for each top teammate (warm, values-focused)
       - Follow-up email sequence templates
-      - Zoom meeting invitation templates with HaruPlate branding
+      - Zoom meeting invitation templates with Business branding
       - Interview scheduling coordination plan
       - Cultural context notes for Malaysian market sensitivity
       - Email subject line options that reflect our sincere, health-focused brand
-      - Response handling guidelines maintaining HaruPlate tone
+      - Response handling guidelines maintaining Business tone
     agent: communications_coordinator
     
   quality_assurance_review_task:
     description: |
       Conduct comprehensive quality assurance review of all recruitment outputs to ensure 100% 
-      HaruPlate brand compliance. Review and provide feedback on:
+      Business brand compliance. Review and provide feedback on:
       
       1. Job description brand alignment and tone
       2. Compatibility analysis methodology and scoring accuracy
-      3. Email communications for proper HaruPlate voice and terminology
+      3. Email communications for proper Business voice and terminology
       4. Overall process adherence to company values
       
       Implement feedback loop with specific recommendations for any improvements needed.

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-HaruPlate Admin Expert Crew
+Business Admin Expert Crew
 Based on umur957 repository patterns (n8n-invoice-automation, Custodian)
-Specialized crew for HaruPlate's administrative, financial, and document management processes.
+Specialized crew for Business's administrative, financial, and document management processes.
 """
 
 from crewai import Agent, Task, Crew
@@ -17,19 +17,19 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 @CrewBase
-class HaruPlateAdminCrew:
+class BusinessAdminCrew:
     """
-    HaruPlate Admin Expert Crew
+    Business Admin Expert Crew
     Manages financial processing, document organization, meeting preparation, and data analysis 
-    with HaruPlate's specific business requirements.
+    with Business's specific business requirements.
     """
     
     # Load configurations
-    agents_config = 'config/haruplate_admin_agents.yaml'
-    tasks_config = 'config/haruplate_admin_tasks.yaml'
+    agents_config = 'config/admin_agents.yaml'
+    tasks_config = 'config/admin_tasks.yaml'
     
     def __init__(self):
-        """Initialize the Admin crew with HaruPlate-specific tools."""
+        """Initialize the Admin crew with Business-specific tools."""
         self.config_path = Path(__file__).parent.parent.parent / "config"
         self._load_configurations()
         
@@ -37,8 +37,8 @@ class HaruPlateAdminCrew:
         """Load agent and task configurations."""
         # Config files are in the project root config directory
         project_root = Path(__file__).parent.parent.parent
-        agents_file = project_root / "config" / "haruplate_admin_agents.yaml"
-        tasks_file = project_root / "config" / "haruplate_admin_tasks.yaml"
+        agents_file = project_root / "config" / "admin_agents.yaml"
+        tasks_file = project_root / "config" / "admin_tasks.yaml"
         
         if agents_file.exists():
             try:
@@ -65,7 +65,7 @@ class HaruPlateAdminCrew:
     @agent
     def financial_document_processor(self) -> Agent:
         """
-        HaruPlate Financial Document Processor - Automates invoice processing.
+        Business Financial Document Processor - Automates invoice processing.
         Based on umur957/n8n-invoice-automation pattern.
         """
         config = self.agents_config['agents']['financial_document_processor']
@@ -82,7 +82,7 @@ class HaruPlateAdminCrew:
     @agent
     def digital_archivist(self) -> Agent:
         """
-        HaruPlate Digital Archivist - Organizes and archives documents.
+        Business Digital Archivist - Organizes and archives documents.
         Based on umur957/Custodian pattern.
         """
         config = self.agents_config['agents']['digital_archivist']
@@ -99,7 +99,7 @@ class HaruPlateAdminCrew:
     @agent
     def meeting_assistant(self) -> Agent:
         """
-        HaruPlate Meeting Assistant - Prepares meeting briefings.
+        Business Meeting Assistant - Prepares meeting briefings.
         Based on crewAI prep-for-a-meeting pattern.
         """
         config = self.agents_config['agents']['meeting_assistant']
@@ -116,7 +116,7 @@ class HaruPlateAdminCrew:
     @agent
     def data_analyst(self) -> Agent:
         """
-        HaruPlate Data Analyst - Analyzes business data and metrics.
+        Business Data Analyst - Analyzes business data and metrics.
         Based on awesome-llm-apps/ai_data_analysis_agent pattern.
         """
         config = self.agents_config['agents']['data_analyst']
@@ -177,7 +177,7 @@ class HaruPlateAdminCrew:
     @crew
     def crew(self) -> Crew:
         """
-        Creates the HaruPlate Admin Expert Crew with parallel/sequential workflow.
+        Creates the Business Admin Expert Crew with parallel/sequential workflow.
         Based on admin processing patterns.
         """
         return Crew(
@@ -217,7 +217,7 @@ class HaruPlateAdminCrew:
         try:
             from ..tools.document_tools import (
                 DocumentCategorizationTool,
-                HaruPlateFilingTool,
+                BusinessFilingTool,
                 ContentAnalysisTool,
                 OCRProcessingTool
             )
@@ -226,7 +226,7 @@ class HaruPlateAdminCrew:
             )
             return [
                 DocumentCategorizationTool(),
-                HaruPlateFilingTool(),
+                BusinessFilingTool(),
                 ContentAnalysisTool(),
                 OCRProcessingTool(),
                 GoogleDriveIntegrationTool()
@@ -266,7 +266,7 @@ class HaruPlateAdminCrew:
             from ..tools.data_analysis_tools import (
                 ExcelAnalysisTool,
                 BusinessMetricsTool,
-                HaruPlateMarketAnalysisTool,
+                BusinessMarketAnalysisTool,
                 TrendAnalysisTool
             )
             from ..tools.integration_tools import (
@@ -275,7 +275,7 @@ class HaruPlateAdminCrew:
             return [
                 ExcelAnalysisTool(),
                 BusinessMetricsTool(),
-                HaruPlateMarketAnalysisTool(),
+                BusinessMarketAnalysisTool(),
                 TrendAnalysisTool(),
                 GoogleSheetsIntegrationTool()
             ]
@@ -285,7 +285,7 @@ class HaruPlateAdminCrew:
     
     def process_request(self, request: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Process an administrative request through the HaruPlate Admin workflow.
+        Process an administrative request through the Business Admin workflow.
         
         Args:
             request: The administrative request text
@@ -294,7 +294,7 @@ class HaruPlateAdminCrew:
         Returns:
             Dict containing the crew's processing results
         """
-        logger.info(f"🏢 HaruPlate Admin Expert Crew processing request...")
+        logger.info(f"🏢 Business Admin Expert Crew processing request...")
         
         try:
             # Determine request type and prepare appropriate inputs
@@ -313,7 +313,7 @@ class HaruPlateAdminCrew:
                     "focus": "Child nutrition, natural products",
                     "markets": "Singapore, Malaysia",
                     "suppliers": "Malaysian suppliers priority",
-                    "categories": "HaruPlate expense categorization"
+                    "categories": "Business expense categorization"
                 }
             }
             
@@ -323,7 +323,7 @@ class HaruPlateAdminCrew:
             # Determine if approval is needed based on request type
             needs_approval = self._admin_needs_approval(request, result)
             
-            # Format results for HaruPlate Orchestra
+            # Format results for Business Orchestra
             formatted_result = {
                 "status": "completed",
                 "crew_type": "admin_expert",
@@ -332,7 +332,7 @@ class HaruPlateAdminCrew:
                 "approval_required": needs_approval,
                 "approval_message": self._generate_approval_message(request_type, result) if needs_approval else "",
                 "next_steps": self._generate_next_steps(request_type, result),
-                "haruplate_compliance": self._check_admin_compliance(result),
+                "business_compliance": self._check_admin_compliance(result),
                 "processing_metadata": {
                     "request_processed": True,
                     "agents_involved": self._get_involved_agents(request_type),
@@ -341,7 +341,7 @@ class HaruPlateAdminCrew:
                 }
             }
             
-            logger.info(f"✅ HaruPlate Admin Expert Crew completed successfully")
+            logger.info(f"✅ Business Admin Expert Crew completed successfully")
             return formatted_result
             
         except Exception as e:
@@ -391,7 +391,7 @@ class HaruPlateAdminCrew:
         
         return (
             f"{base_message}\n\n"
-            f"The team has processed your request with attention to HaruPlate's operational "
+            f"The team has processed your request with attention to Business's operational "
             f"standards, Malaysian supplier preferences, and child nutrition business focus.\n\n"
             f"Please review and approve to proceed."
         )
@@ -410,7 +410,7 @@ class HaruPlateAdminCrew:
                 "Review document categorization decisions", 
                 "Approve file movements and renaming",
                 "Check organized folder structure",
-                "Verify HaruPlate naming conventions compliance",
+                "Verify Business naming conventions compliance",
                 "Review documents flagged for manual review"
             ],
             "meeting_preparation": [
@@ -431,7 +431,7 @@ class HaruPlateAdminCrew:
         
         return next_steps_by_type.get(request_type, [
             "Review admin processing results",
-            "Verify HaruPlate compliance",
+            "Verify Business compliance",
             "Approve next steps"
         ])
     
@@ -448,11 +448,11 @@ class HaruPlateAdminCrew:
         return agent_mapping.get(request_type, ["financial_document_processor", "digital_archivist"])
     
     def _check_admin_compliance(self, result: Any) -> Dict[str, Any]:
-        """Check HaruPlate compliance for admin results."""
+        """Check Business compliance for admin results."""
         return {
             "malaysian_supplier_priority": True,
             "child_nutrition_categorization": True,
-            "haruplate_naming_conventions": True,
+            "business_naming_conventions": True,
             "singapore_malaysia_market_focus": True,
             "natural_products_classification": True
         }
@@ -465,14 +465,14 @@ class HaruPlateAdminCrew:
         return sum(1 for indicator in malaysian_indicators if indicator in result_text)
 
 
-def create_haruplate_admin_crew() -> HaruPlateAdminCrew:
-    """Factory function to create HaruPlate Admin Expert Crew."""
-    return HaruPlateAdminCrew()
+def create_business_admin_crew() -> BusinessAdminCrew:
+    """Factory function to create Business Admin Expert Crew."""
+    return BusinessAdminCrew()
 
 
 if __name__ == "__main__":
     # Test the crew
-    admin_crew = create_haruplate_admin_crew()
+    admin_crew = create_business_admin_crew()
     
     test_request = "Process the latest invoices from our Malaysian suppliers and organize them in Google Sheets."
     test_context = {

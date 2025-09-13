@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Real API Integrations for HaruPlate Orchestra
+Real API Integrations for Business Orchestra
 Based on awesome-llm-apps patterns for Gmail, Zoom, Google Sheets, and Google Drive
 """
 
@@ -67,7 +67,7 @@ class InvoiceData:
     date: datetime
     line_items: List[Dict[str, Any]]
     is_malaysian_supplier: bool
-    haruplate_category: str
+    business_category: str
 
 class BaseAPITool:
     """Base class for API tools when CrewAI is not available."""
@@ -188,7 +188,7 @@ class GmailIntegrationTool(ToolBase):
                 id=f"sim_email_{i}",
                 sender=f"{supplier.lower().replace(' ', '.')}@gmail.com",
                 subject=f"Invoice #{1000 + i} - {supplier}",
-                body=f"Please find attached invoice for organic ingredients supplied to HaruPlate.",
+                body=f"Please find attached invoice for organic ingredients supplied to Business.",
                 attachments=[{
                     "filename": f"INV-{1000 + i}-{supplier.replace(' ', '_')}.pdf",
                     "data": f"simulated_pdf_data_{i}"
@@ -201,7 +201,7 @@ class GmailIntegrationTool(ToolBase):
         logger.info(f"Generated {len(simulated_emails)} simulated invoice emails")
         return simulated_emails
     
-    def apply_label(self, message_id: str, label: str = "haruplate-processed"):
+    def apply_label(self, message_id: str, label: str = "business-processed"):
         """Apply label to processed email following n8n-invoice-automation pattern."""
         if not self.gmail_service:
             logger.info(f"[SIMULATION] Applied label '{label}' to message {message_id}")
@@ -260,7 +260,7 @@ class GoogleSheetsIntegrationTool(ToolBase):
     name: str = "Google Sheets Integration Tool"
     description: str = (
         "Integrates with Google Sheets to update invoice data, expense tracking, and financial reports. "
-        "Follows the n8n-invoice-automation pattern for structured data storage with HaruPlate categorization."
+        "Follows the n8n-invoice-automation pattern for structured data storage with Business categorization."
     )
     
     def __init__(self):
@@ -352,7 +352,7 @@ class GoogleSheetsIntegrationTool(ToolBase):
         # Header for Invoices sheet
         invoice_summary.append([
             "Invoice ID", "Supplier", "Amount", "Currency", "Date", 
-            "Malaysian Supplier", "HaruPlate Category", "Processed Date"
+            "Malaysian Supplier", "Business Category", "Processed Date"
         ])
         
         # Header for Invoice_Items sheet
@@ -370,7 +370,7 @@ class GoogleSheetsIntegrationTool(ToolBase):
                 invoice.currency,
                 invoice.date.strftime("%Y-%m-%d"),
                 "Yes" if invoice.is_malaysian_supplier else "No",
-                invoice.haruplate_category,
+                invoice.business_category,
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             ])
             
@@ -387,8 +387,8 @@ class GoogleSheetsIntegrationTool(ToolBase):
                 ])
         
         # Update both sheets
-        summary_result = self._run("haruplate_financials", "Invoices", invoice_summary)
-        items_result = self._run("haruplate_financials", "Invoice_Items", invoice_items)
+        summary_result = self._run("business_financials", "Invoices", invoice_summary)
+        items_result = self._run("business_financials", "Invoice_Items", invoice_items)
         
         return {
             "invoices_sheet": summary_result,
@@ -400,13 +400,13 @@ class GoogleSheetsIntegrationTool(ToolBase):
 class ZoomAPITool(ToolBase):
     """
     Zoom API Integration Tool following awesome-llm-apps/ai_recruitment_agent_team pattern
-    Handles meeting scheduling and Zoom integration for HaruPlate recruitment and meetings.
+    Handles meeting scheduling and Zoom integration for Business recruitment and meetings.
     """
     
     name: str = "Zoom API Integration Tool"
     description: str = (
         "Integrates with Zoom API to schedule meetings, create meeting links, and manage "
-        "video conferencing for HaruPlate recruitment and business meetings. "
+        "video conferencing for Business recruitment and business meetings. "
         "Based on awesome-llm-apps Zoom integration patterns."
     )
     
@@ -475,8 +475,8 @@ class ZoomAPITool(ToolBase):
                 "type": 2,  # Scheduled meeting
                 "start_time": start_time,
                 "duration": duration,
-                "timezone": "Asia/Kuala_Lumpur",  # Malaysian timezone for HaruPlate
-                "agenda": f"HaruPlate meeting: {meeting_title}",
+                "timezone": "Asia/Kuala_Lumpur",  # Malaysian timezone for Business
+                "agenda": f"Business meeting: {meeting_title}",
                 "settings": {
                     "host_video": True,
                     "participant_video": True,
@@ -535,7 +535,7 @@ class ZoomAPITool(ToolBase):
             "meeting_title": meeting_title,
             "start_time": start_time,
             "duration": duration,
-            "password": "haruplate123",
+            "password": "business123",
             "timezone": "Asia/Kuala_Lumpur",
             "simulation": True
         }
@@ -549,7 +549,7 @@ class GoogleDriveIntegrationTool(ToolBase):
     name: str = "Google Drive Integration Tool"
     description: str = (
         "Integrates with Google Drive to upload, organize, and manage documents. "
-        "Follows n8n-invoice-automation pattern for PDF archival and HaruPlate document organization."
+        "Follows n8n-invoice-automation pattern for PDF archival and Business document organization."
     )
     
     def __init__(self):
@@ -582,7 +582,7 @@ class GoogleDriveIntegrationTool(ToolBase):
             logger.error(f"Failed to initialize Google Drive service: {e}")
             self.drive_service = None
     
-    def _run(self, file_name: str, file_content: bytes, folder_name: str = "HaruPlate_Invoices") -> Dict[str, Any]:
+    def _run(self, file_name: str, file_content: bytes, folder_name: str = "Business_Invoices") -> Dict[str, Any]:
         """
         Upload file to Google Drive following n8n-invoice-automation archival pattern.
         """
@@ -686,7 +686,7 @@ def create_drive_tool() -> GoogleDriveIntegrationTool:
 
 if __name__ == "__main__":
     # Test the API integrations
-    logger.info("Testing HaruPlate API Integrations...")
+    logger.info("Testing Business API Integrations...")
     
     # Test Gmail
     gmail_tool = create_gmail_tool()
@@ -695,7 +695,7 @@ if __name__ == "__main__":
     
     # Test Zoom
     zoom_tool = create_zoom_tool()
-    meeting = zoom_tool._run("HaruPlate Team Meeting", "2025-01-15T10:00:00", 60)
+    meeting = zoom_tool._run("Business Team Meeting", "2025-01-15T10:00:00", 60)
     logger.info(f"Zoom test: {meeting['status']}")
     
     # Test Google Sheets
@@ -706,8 +706,8 @@ if __name__ == "__main__":
     
     # Test Google Drive
     drive_tool = create_drive_tool()
-    test_content = b"Test file content for HaruPlate"
-    upload_result = drive_tool._run("test_document.pdf", test_content, "HaruPlate_Test")
+    test_content = b"Test file content for Business"
+    upload_result = drive_tool._run("test_document.pdf", test_content, "Business_Test")
     logger.info(f"Drive test: {upload_result['status']}")
     
     logger.info("API integration tests completed!")

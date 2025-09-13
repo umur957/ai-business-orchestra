@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HaruPlate Orchestra Flow
+Business Orchestra Flow
 Based on crewAI-examples/flows/meeting_assistant_flow and lead-score-flow patterns
 The main orchestrator using CrewAI Flows for managing HR and Admin crews.
 """
@@ -19,15 +19,15 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # State Management Classes (Based on meeting_assistant_flow pattern)
-class HaruPlateRequestState(BaseModel):
-    """Main state for HaruPlate Orchestra Flow - similar to MeetingState pattern."""
+class BusinessRequestState(BaseModel):
+    """Main state for Business Orchestra Flow - similar to MeetingState pattern."""
     id: str  # Required by CrewAI Flow
     request_id: str
     original_request: str
     request_type: str = ""  # "hr" or "admin" 
     priority: str = "normal"
     timestamp: datetime = datetime.now()
-    user: str = "haruplate_manager"
+    user: str = "business_manager"
     
     # Analysis results
     analysis_complete: bool = False
@@ -46,13 +46,13 @@ class HaruPlateRequestState(BaseModel):
     final_result: Optional[Dict[str, Any]] = None
     completed: bool = False
 
-class HaruPlateOrchestraFlow(Flow[HaruPlateRequestState]):
+class BusinessOrchestraFlow(Flow[BusinessRequestState]):
     """
-    HaruPlate Orchestra Conductor Flow
+    Business Orchestra Conductor Flow
     Orchestrates HR and Admin crews using CrewAI Flows pattern
     """
     
-    initial_state = HaruPlateRequestState
+    initial_state = BusinessRequestState
 
     @start()
     def analyze_request(self):
@@ -60,11 +60,11 @@ class HaruPlateOrchestraFlow(Flow[HaruPlateRequestState]):
         Step 1: Analyze the incoming request to determine routing
         Pattern from meeting_assistant_flow.load_meeting_notes()
         """
-        logger.info(f"🎼 HaruPlate Orchestra: Analyzing request...")
+        logger.info(f"🎼 Business Orchestra: Analyzing request...")
         
         request_text = self.state.original_request.lower()
         
-        # HaruPlate-specific keyword analysis
+        # Business-specific keyword analysis
         hr_keywords = [
             "hire", "recruit", "teammate", "digital marketing specialist", "position", 
             "job description", "cv", "candidate", "interview", "malaysian market",
@@ -80,7 +80,7 @@ class HaruPlateOrchestraFlow(Flow[HaruPlateRequestState]):
         hr_score = sum(2 if keyword in request_text else 0 for keyword in hr_keywords)
         admin_score = sum(2 if keyword in request_text else 0 for keyword in admin_keywords)
         
-        # Routing decision with HaruPlate context
+        # Routing decision with Business context
         if hr_score > admin_score:
             self.state.request_type = "hr"
             routing_reason = f"HR-focused request detected (score: {hr_score})"
@@ -88,7 +88,7 @@ class HaruPlateOrchestraFlow(Flow[HaruPlateRequestState]):
             self.state.request_type = "admin" 
             routing_reason = f"Admin-focused request detected (score: {admin_score})"
         else:
-            # Default to HR for HaruPlate people-first philosophy
+            # Default to HR for Business people-first philosophy
             self.state.request_type = "hr"
             routing_reason = "Ambiguous request - defaulting to HR (people-first philosophy)"
         
@@ -114,27 +114,27 @@ class HaruPlateOrchestraFlow(Flow[HaruPlateRequestState]):
         if self.state.request_type != "hr":
             return
             
-        logger.info(f"👥 Processing HR request with HaruPlate HR Expert Crew...")
+        logger.info(f"👥 Processing HR request with Business HR Expert Crew...")
         
         try:
             # Simulate HR crew processing (will be replaced with actual crew)
             hr_simulation_result = f"""
-🎼 HaruPlate HR Expert Crew Analysis:
+🎼 Business HR Expert Crew Analysis:
 
 📝 Request: {self.state.original_request}
 
 👥 HR TEAM ANALYSIS:
-Our HR Expert Crew has analyzed your request with HaruPlate's family-oriented values:
+Our HR Expert Crew has analyzed your request with Business's family-oriented values:
 
 📋 JOB DESCRIPTION FRAMEWORK:
-- Position aligned with HaruPlate's mission of child nutrition
+- Position aligned with Business's mission of child nutrition
 - Emphasizes "teammate" terminology (not "candidate")
 - Reflects sincere, family-oriented tone
 - Includes Malaysian market cultural sensitivity
 
 🎯 RECRUITMENT STRATEGY:
 - Target platforms: LinkedIn Malaysia, local job boards
-- Emphasize HaruPlate values and healthy mission
+- Emphasize Business values and healthy mission
 - Focus on cultural fit and passion for child nutrition
 
 🔍 CANDIDATE EVALUATION CRITERIA:
@@ -150,7 +150,7 @@ Our HR Expert Crew has analyzed your request with HaruPlate's family-oriented va
 3. Screen applications for values alignment (ongoing)
 4. Schedule interviews with top candidates (1 week)
 
-✨ All outputs will maintain HaruPlate's warm, family-focused brand voice.
+✨ All outputs will maintain Business's warm, family-focused brand voice.
 """
             
             self.state.hr_result = {
@@ -158,10 +158,10 @@ Our HR Expert Crew has analyzed your request with HaruPlate's family-oriented va
                 "processing_timestamp": datetime.now().isoformat(),
                 "crew_type": "hr",
                 "success": True,
-                "haruplate_values_applied": True
+                "business_values_applied": True
             }
             
-            # HR decisions always require human approval for HaruPlate
+            # HR decisions always require human approval for Business
             self.state.approval_required = True
             self.state.approval_message = f"HR Expert Crew has completed analysis for: {self.state.original_request[:100]}..."
             
@@ -184,17 +184,17 @@ Our HR Expert Crew has analyzed your request with HaruPlate's family-oriented va
         if self.state.request_type != "admin":
             return
             
-        logger.info(f"📋 Processing Admin request with HaruPlate Admin Expert Crew...")
+        logger.info(f"📋 Processing Admin request with Business Admin Expert Crew...")
         
         try:
             # Simulate Admin crew processing (will be replaced with actual crew)
-            from ..crews.haruplate_admin_crew import HaruPlateAdminCrew
+            from ..crews.business_admin_crew import BusinessAdminCrew
             
-            admin_crew = HaruPlateAdminCrew()
+            admin_crew = BusinessAdminCrew()
             
-            # Process request with HaruPlate context
+            # Process request with Business context
             crew_context = {
-                "company_name": "HaruPlate",
+                "company_name": "Business",
                 "operational_focus": "Malaysian suppliers, Singapore sales data",
                 "file_systems": "Google Drive, Google Sheets integration",
                 "compliance": "Child nutrition industry standards",
@@ -205,7 +205,7 @@ Our HR Expert Crew has analyzed your request with HaruPlate's family-oriented va
                 "request": self.state.original_request,
                 "context": crew_context
             })
-🎼 HaruPlate Admin Expert Crew Analysis:
+🎼 Business Admin Expert Crew Analysis:
 
 📝 Request: {self.state.original_request}
 
@@ -236,7 +236,7 @@ Our Admin Expert Crew has processed your operational request:
 - System integration testing: 30 minutes
 - Go-live and monitoring: Ongoing
 
-🌟 All processes maintain HaruPlate's operational excellence standards.
+🌟 All processes maintain Business's operational excellence standards.
 """
             
             self.state.admin_result = {
@@ -244,7 +244,7 @@ Our Admin Expert Crew has processed your operational request:
                 "processing_timestamp": datetime.now().isoformat(),
                 "crew_type": "admin",
                 "success": True,
-                "haruplate_compliance": True
+                "business_compliance": True
             }
             
             # Check if human approval is required for financial decisions
@@ -276,7 +276,7 @@ Our Admin Expert Crew has processed your operational request:
         
         # Display results for human review
         print("\n" + "="*60)
-        print("🎼 HaruPlate Orchestra - Human Approval Required")
+        print("🎼 Business Orchestra - Human Approval Required")
         print("="*60)
         print(f"📋 Original Request: {self.state.original_request}")
         print(f"📊 Request Type: {self.state.request_type.upper()}")
@@ -333,9 +333,9 @@ Our Admin Expert Crew has processed your operational request:
         Step 4a: Finalize the orchestra response
         Pattern from meeting_assistant_flow.send_slack_notification()
         """
-        logger.info(f"🎯 Finalizing HaruPlate Orchestra response...")
+        logger.info(f"🎯 Finalizing Business Orchestra response...")
         
-        # Compile final response with HaruPlate branding
+        # Compile final response with Business branding
         final_output = {
             "request_id": self.state.request_id,
             "original_request": self.state.original_request,
@@ -346,7 +346,7 @@ Our Admin Expert Crew has processed your operational request:
                 "processing_timestamp": datetime.now().isoformat()
             },
             "crew_results": {},
-            "haruplate_context": {
+            "business_context": {
                 "company_values": "sincere, family-oriented, child nutrition focused",
                 "brand_voice": "warm, professional, health-conscious"
             }
@@ -359,14 +359,14 @@ Our Admin Expert Crew has processed your operational request:
         if self.state.admin_result:
             final_output["crew_results"]["admin_expert_team"] = self.state.admin_result
         
-        # Generate HaruPlate-style summary
+        # Generate Business-style summary
         summary_lines = [
-            "🎼 HaruPlate Orchestra Response Summary",
+            "🎼 Business Orchestra Response Summary",
             "=" * 50,
             f"📋 Request: {self.state.original_request}",
             f"🎯 Handled by: {self.state.request_type.title()} Expert Team",
             f"⏰ Completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-            f"✅ Status: Successfully processed with HaruPlate values alignment"
+            f"✅ Status: Successfully processed with Business values alignment"
         ]
         
         if self.state.hr_result:
@@ -377,7 +377,7 @@ Our Admin Expert Crew has processed your operational request:
         
         summary_lines.extend([
             "",
-            "🌟 HaruPlate Orchestra is committed to supporting your strategic",
+            "🌟 Business Orchestra is committed to supporting your strategic",
             "   vision while maintaining our family-oriented, health-focused values.",
             "=" * 50
         ])
@@ -390,7 +390,7 @@ Our Admin Expert Crew has processed your operational request:
         # Display final summary
         print("\n" + final_output["summary"])
         
-        logger.info(f"🎉 HaruPlate Orchestra processing complete")
+        logger.info(f"🎉 Business Orchestra processing complete")
 
     @listen("process_modifications")
     def handle_modifications(self):
@@ -413,7 +413,7 @@ Our Admin Expert Crew has processed your operational request:
         """
         Step 4c: Handle process abortion
         """
-        logger.info(f"🛑 Aborting HaruPlate Orchestra process...")
+        logger.info(f"🛑 Aborting Business Orchestra process...")
         
         self.state.final_result = {
             "request_id": self.state.request_id,
@@ -425,14 +425,14 @@ Our Admin Expert Crew has processed your operational request:
         
         self.state.completed = True
         
-        print("\n🛑 HaruPlate Orchestra process has been aborted.")
-        print("Thank you for using HaruPlate Orchestra.")
+        print("\n🛑 Business Orchestra process has been aborted.")
+        print("Thank you for using Business Orchestra.")
 
 
 # Convenience functions for external usage
-def create_haruplate_flow(request: str, user: str = "haruplate_manager") -> HaruPlateOrchestraFlow:
-    """Create and return a HaruPlate Orchestra Flow instance"""
-    flow = HaruPlateOrchestraFlow()
+def create_business_flow(request: str, user: str = "business_manager") -> BusinessOrchestraFlow:
+    """Create and return a Business Orchestra Flow instance"""
+    flow = BusinessOrchestraFlow()
     flow.state.request_id = str(uuid.uuid4())
     flow.state.original_request = request
     flow.state.user = user
@@ -440,15 +440,15 @@ def create_haruplate_flow(request: str, user: str = "haruplate_manager") -> Haru
     return flow
 
 
-def process_haruplate_request(request: str, user: str = "haruplate_manager") -> Dict[str, Any]:
+def process_business_request(request: str, user: str = "business_manager") -> Dict[str, Any]:
     """
-    Main entry point for processing HaruPlate requests
+    Main entry point for processing Business requests
     Returns the final result dictionary
     """
-    logger.info(f"🎼 Starting HaruPlate Orchestra for: {request[:50]}...")
+    logger.info(f"🎼 Starting Business Orchestra for: {request[:50]}...")
     
     try:
-        flow = create_haruplate_flow(request, user)
+        flow = create_business_flow(request, user)
         result = flow.kickoff()
         
         if hasattr(flow.state, 'final_result') and flow.state.final_result:
@@ -460,7 +460,7 @@ def process_haruplate_request(request: str, user: str = "haruplate_manager") -> 
             }
             
     except Exception as e:
-        logger.error(f"❌ HaruPlate Orchestra failed: {str(e)}")
+        logger.error(f"❌ Business Orchestra failed: {str(e)}")
         return {
             "error": str(e),
             "status": "failed",
@@ -470,14 +470,14 @@ def process_haruplate_request(request: str, user: str = "haruplate_manager") -> 
 
 # Example usage and testing
 if __name__ == "__main__":
-    # Test the HaruPlate Orchestra Flow
+    # Test the Business Orchestra Flow
     test_requests = [
         "Tell the HR team we need to find an experienced 'Digital Marketing Specialist' for the Malaysian market. Have them start the process.",
         "Process the invoices from our Malaysian suppliers and update the Q3 expense tracking in Google Sheets.",
         "Prepare for next week's board meeting with sales data analysis from Singapore operations."
     ]
     
-    print("🧪 Testing HaruPlate Orchestra Flow...")
+    print("🧪 Testing Business Orchestra Flow...")
     print("-" * 60)
     
     for i, request in enumerate(test_requests, 1):
@@ -485,7 +485,7 @@ if __name__ == "__main__":
         print(f"'{request}'")
         print("\n🔄 Processing...")
         
-        result = process_haruplate_request(request)
+        result = process_business_request(request)
         
         if result.get("error"):
             print(f"❌ Error: {result['error']}")

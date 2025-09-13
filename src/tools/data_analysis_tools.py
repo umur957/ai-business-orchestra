@@ -1,5 +1,5 @@
 """
-HaruPlate Data Analysis Tools
+Business Data Analysis Tools
 Natural language query processing and business intelligence tools.
 """
 
@@ -23,7 +23,7 @@ class NaturalLanguageQueryTool(BaseTool):
         return {
             "query": query,
             "sql_generated": f"SELECT * FROM {data_source} WHERE ...",
-            "results": [{"product": "HaruPlate Premium", "sales": 1500, "region": "Malaysia"}],
+            "results": [{"product": "Business Premium", "sales": 1500, "region": "Malaysia"}],
             "interpretation": f"Analysis complete for: {query}"
         }
 
@@ -38,7 +38,7 @@ class SalesAnalysisTool(BaseTool):
         return {
             "analysis_type": analysis_type,
             "time_period": time_period,
-            "top_products": ["HaruPlate Premium", "HaruPlate Natural"],
+            "top_products": ["Business Premium", "Business Natural"],
             "growth_rate": "+15%",
             "market_insights": ["Strong performance in Malaysian market"]
         }
@@ -59,8 +59,8 @@ class ReportGenerationTool(BaseTool):
         }
 
 
-# Tool aliases for HaruPlate crew compatibility
+# Tool aliases for Business crew compatibility
 ExcelAnalysisTool = NaturalLanguageQueryTool
 BusinessMetricsTool = SalesAnalysisTool
-HaruPlateMarketAnalysisTool = SalesAnalysisTool
+BusinessMarketAnalysisTool = SalesAnalysisTool
 TrendAnalysisTool = SalesAnalysisTool

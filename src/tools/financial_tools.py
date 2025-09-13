@@ -1,5 +1,5 @@
 """
-HaruPlate Financial Tools
+Business Financial Tools
 Invoice processing, Google Sheets integration, and expense management.
 """
 
@@ -39,7 +39,7 @@ class InvoiceProcessingTool(BaseTool):
     name: str = "Invoice Processing Tool"
     description: str = """Automatically retrieves invoices from email, extracts data using OCR,
         and converts to structured format. Handles PDF invoices and scanned documents.
-        Designed for HaruPlate's supplier management workflow."""
+        Designed for Business's supplier management workflow."""
 
     def __init__(self):
         super().__init__()
@@ -47,7 +47,7 @@ class InvoiceProcessingTool(BaseTool):
         self.SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
         self.gmail_service = None
         
-        # HaruPlate supplier categories
+        # Business supplier categories
         self.supplier_categories = {
             "raw_materials": ["ingredient", "organic", "powder", "extract", "vitamin"],
             "packaging": ["bottle", "label", "box", "container", "packaging"],
@@ -96,7 +96,7 @@ class InvoiceProcessingTool(BaseTool):
                 "processing_summary": processing_summary,
                 "next_steps": [
                     "Review extracted data for accuracy",
-                    "Categorize expenses by HaruPlate standards",
+                    "Categorize expenses by Business standards",
                     "Update Google Sheets with new invoice data",
                     "Archive processed invoices to Google Drive"
                 ]
@@ -251,7 +251,7 @@ class InvoiceProcessingTool(BaseTool):
                 return invoice_data
             
             # Categorize the invoice
-            invoice_data["haruplate_category"] = self._categorize_invoice(invoice_data["extracted_data"])
+            invoice_data["business_category"] = self._categorize_invoice(invoice_data["extracted_data"])
             
             # Validate and enhance data
             invoice_data["validation"] = self._validate_invoice_data(invoice_data["extracted_data"])
@@ -302,7 +302,7 @@ Date: {datetime.now().strftime('%Y-%m-%d')}
 Due Date: {(datetime.now() + timedelta(days=30)).strftime('%Y-%m-%d')}
 
 Bill To:
-HaruPlate Sdn Bhd
+Business Sdn Bhd
 456 Jalan Nutrition
 Kuala Lumpur, Malaysia
 
@@ -418,7 +418,7 @@ Terms: Net 30 days
         return None
     
     def _categorize_invoice(self, invoice_data: Dict[str, Any]) -> str:
-        """Categorize invoice based on content for HaruPlate."""
+        """Categorize invoice based on content for Business."""
         
         text_to_analyze = " ".join([
             invoice_data.get("supplier_name", ""),
@@ -490,7 +490,7 @@ Terms: Net 30 days
                     total_amount += amount
                 
                 # Count categories
-                category = invoice.get("haruplate_category", "other")
+                category = invoice.get("business_category", "other")
                 categories[category] = categories.get(category, 0) + 1
                 
                 # Collect suppliers
@@ -547,7 +547,7 @@ Terms: Net 30 days
                         }
                     ]
                 },
-                "haruplate_category": "raw_materials" if i % 2 == 0 else "packaging",
+                "business_category": "raw_materials" if i % 2 == 0 else "packaging",
                 "validation": {
                     "is_valid": True,
                     "issues": [],
@@ -567,7 +567,7 @@ Terms: Net 30 days
             "simulation_mode": True,
             "next_steps": [
                 "Review extracted data for accuracy",
-                "Categorize expenses by HaruPlate standards",
+                "Categorize expenses by Business standards",
                 "Update Google Sheets with new invoice data",
                 "Archive processed invoices to Google Drive"
             ]
@@ -580,7 +580,7 @@ class GoogleSheetsIntegrationTool(BaseTool):
     name: str = "Google Sheets Integration Tool"
     description: str = """Integrates processed financial data with Google Sheets.
         Creates and updates financial tracking spreadsheets with invoice summaries
-        and detailed line items. Designed for HaruPlate's financial workflow."""
+        and detailed line items. Designed for Business's financial workflow."""
 
     def __init__(self):
         super().__init__()
@@ -588,7 +588,7 @@ class GoogleSheetsIntegrationTool(BaseTool):
         self.SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
         self.sheets_service = None
         
-        # HaruPlate financial spreadsheet structure
+        # Business financial spreadsheet structure
         self.invoice_summary_headers = [
             "Invoice Number", "Date", "Supplier", "Category", 
             "Subtotal", "Tax", "Total", "Currency", "Status", "Due Date"
@@ -694,7 +694,7 @@ class GoogleSheetsIntegrationTool(BaseTool):
                     extracted.get("invoice_number", ""),
                     extracted.get("invoice_date", ""),
                     extracted.get("supplier_name", ""),
-                    invoice.get("haruplate_category", ""),
+                    invoice.get("business_category", ""),
                     extracted.get("subtotal", 0),
                     extracted.get("tax_amount", 0),
                     extracted.get("total_amount", 0),
@@ -763,7 +763,7 @@ class GoogleSheetsIntegrationTool(BaseTool):
                         item.get("quantity", ""),
                         item.get("unit_price", 0),
                         item.get("total", 0),
-                        invoice.get("haruplate_category", "")
+                        invoice.get("business_category", "")
                     ]
                     rows.append(row)
             
@@ -889,17 +889,17 @@ class GoogleSheetsIntegrationTool(BaseTool):
 
 
 class ExpenseTrackingTool(BaseTool):
-    """Tracks and categorizes expenses according to HaruPlate's business needs."""
+    """Tracks and categorizes expenses according to Business's business needs."""
     
-    name: str = "HaruPlate Expense Tracking Tool"  
-    description: str = """Tracks expenses and categorizes them according to HaruPlate's
+    name: str = "Business Expense Tracking Tool"  
+    description: str = """Tracks expenses and categorizes them according to Business's
         business categories. Provides expense analysis, budget tracking, and insights
         for family business financial management."""
 
     def __init__(self):
         super().__init__()
         
-        # HaruPlate expense categories with budget guidelines
+        # Business expense categories with budget guidelines
         self.expense_categories = {
             "raw_materials": {
                 "budget_percentage": 40,  # 40% of total budget
@@ -941,7 +941,7 @@ class ExpenseTrackingTool(BaseTool):
     def _run(self, expense_data: List[Dict[str, Any]], 
              analysis_period: str = "monthly", budget_total: float = 0) -> Dict[str, Any]:
         """
-        Tracks and analyzes expenses for HaruPlate.
+        Tracks and analyzes expenses for Business.
         
         Args:
             expense_data: List of expense records to analyze
@@ -978,7 +978,7 @@ class ExpenseTrackingTool(BaseTool):
                 "budget_analysis": budget_analysis,
                 "insights_and_recommendations": insights,
                 "expense_trends": trends,
-                "haruplate_priorities": self._assess_priority_alignment(category_totals),
+                "business_priorities": self._assess_priority_alignment(category_totals),
                 "next_actions": [
                     "Review high-priority category spending",
                     "Optimize expenses in over-budget categories",
@@ -995,7 +995,7 @@ class ExpenseTrackingTool(BaseTool):
             return {"error": f"Expense tracking failed: {str(e)}"}
     
     def _categorize_expenses(self, expense_data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-        """Categorize expenses according to HaruPlate's business categories."""
+        """Categorize expenses according to Business's business categories."""
         
         categorized = {category: [] for category in self.expense_categories.keys()}
         
@@ -1003,7 +1003,7 @@ class ExpenseTrackingTool(BaseTool):
             category = self._determine_expense_category(expense)
             categorized[category].append({
                 **expense,
-                "haruplate_category": category,
+                "business_category": category,
                 "category_priority": self.expense_categories[category]["priority"]
             })
         
@@ -1090,7 +1090,7 @@ class ExpenseTrackingTool(BaseTool):
             "key_findings": [],
             "recommendations": [],
             "cost_optimization_opportunities": [],
-            "haruplate_specific_insights": []
+            "business_specific_insights": []
         }
         
         total_expenses = sum(category_totals.values())
@@ -1099,12 +1099,12 @@ class ExpenseTrackingTool(BaseTool):
         highest_category = max(category_totals.items(), key=lambda x: x[1])
         insights["key_findings"].append(f"Highest expense category: {highest_category[0]} (RM {highest_category[1]:,.2f})")
         
-        # HaruPlate-specific insights
+        # Business-specific insights
         core_categories = ["raw_materials", "packaging", "research_development"]
         core_spending = sum(category_totals.get(cat, 0) for cat in core_categories)
         core_percentage = (core_spending / total_expenses * 100) if total_expenses > 0 else 0
         
-        insights["haruplate_specific_insights"].extend([
+        insights["business_specific_insights"].extend([
             f"Core product categories (raw materials, packaging, R&D) represent {core_percentage:.1f}% of total spending",
             f"Raw materials spending: RM {category_totals.get('raw_materials', 0):,.2f} - {'aligned with' if core_percentage >= 60 else 'below'} family business focus"
         ])
@@ -1192,7 +1192,7 @@ class ExpenseTrackingTool(BaseTool):
         }
     
     def _assess_priority_alignment(self, category_totals: Dict[str, float]) -> Dict[str, Any]:
-        """Assess how expense distribution aligns with HaruPlate's priorities."""
+        """Assess how expense distribution aligns with Business's priorities."""
         
         total_expenses = sum(category_totals.values())
         priority_analysis = {
@@ -1261,5 +1261,5 @@ if __name__ == "__main__":
     print("💰 Expense Tracking Result:", expense_result)
 
 
-# Tool aliases for HaruPlate crew compatibility  
+# Tool aliases for Business crew compatibility  
 MalaysianSupplierTool = ExpenseTrackingTool  # Malaysian supplier tracking within expense system

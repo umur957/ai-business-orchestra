@@ -1,6 +1,6 @@
 """
-HaruPlate Recruitment Tools
-Real API integrations for CV analysis, email communications, Zoom scheduling, and HaruPlate compatibility scoring.
+Business Recruitment Tools
+Real API integrations for CV analysis, email communications, Zoom scheduling, and Business compatibility scoring.
 """
 
 import os
@@ -157,8 +157,8 @@ class CVAnalysisTool(BaseTool):
         return education[:3]  # Return top 3 education entries
     
     def _assess_industry_experience(self, text: str) -> Dict[str, Any]:
-        """Assesses relevant industry experience for HaruPlate."""
-        # HaruPlate relevant industries
+        """Assesses relevant industry experience for Business."""
+        # Business relevant industries
         relevant_industries = {
             'food_nutrition': ['food', 'nutrition', 'health', 'wellness', 'dietary', 'supplement'],
             'child_focused': ['child', 'children', 'baby', 'infant', 'pediatric', 'family'],
@@ -183,7 +183,7 @@ class CVAnalysisTool(BaseTool):
         }
     
     def _assess_communication_style(self, text: str) -> Dict[str, Any]:
-        """Assesses communication style for HaruPlate fit."""
+        """Assesses communication style for Business fit."""
         # Look for indicators of sincere, family-oriented communication
         positive_indicators = [
             'passion', 'mission', 'purpose', 'values', 'integrity', 'family',
@@ -243,18 +243,18 @@ class CVAnalysisTool(BaseTool):
         return certifications[:3]
 
 
-class HaruPlateCompatibilityTool(BaseTool):
-    """Calculates compatibility scores for candidates based on HaruPlate's values."""
+class BusinessCompatibilityTool(BaseTool):
+    """Calculates compatibility scores for candidates based on Business's values."""
     
-    name: str = "HaruPlate Compatibility Scoring Tool"
-    description: str = """Calculates HaruPlate-specific compatibility scores for candidates.
+    name: str = "Business Compatibility Scoring Tool"
+    description: str = """Calculates Business-specific compatibility scores for candidates.
         Uses 60% values alignment + 40% technical competence weighting.
         Prioritizes passion for child nutrition, family values, and natural products.
         Returns detailed scoring breakdown and recommendations."""
 
     def _run(self, cv_analysis: Dict[str, Any], position_requirements: str = "") -> Dict[str, Any]:
         """
-        Calculates HaruPlate compatibility score for a candidate.
+        Calculates Business compatibility score for a candidate.
         
         Args:
             cv_analysis: Results from CV analysis tool
@@ -264,7 +264,7 @@ class HaruPlateCompatibilityTool(BaseTool):
             Dictionary with detailed compatibility scoring
         """
         try:
-            # HaruPlate scoring weights
+            # Business scoring weights
             VALUES_WEIGHT = 0.6
             TECHNICAL_WEIGHT = 0.4
             
@@ -289,7 +289,7 @@ class HaruPlateCompatibilityTool(BaseTool):
                 "technical_competence_score": round(technical_score, 1),
                 "recommendation_level": recommendation,
                 "detailed_feedback": feedback,
-                "haruplate_fit_factors": self._identify_fit_factors(cv_analysis),
+                "business_fit_factors": self._identify_fit_factors(cv_analysis),
                 "areas_for_development": self._identify_development_areas(cv_analysis, technical_score),
                 "interview_focus_areas": self._suggest_interview_focus(values_score, technical_score)
             }
@@ -302,7 +302,7 @@ class HaruPlateCompatibilityTool(BaseTool):
             return {"error": f"Compatibility scoring failed: {str(e)}"}
     
     def _calculate_values_alignment(self, cv_analysis: Dict[str, Any]) -> float:
-        """Calculates values alignment score based on HaruPlate's values."""
+        """Calculates values alignment score based on Business's values."""
         score = 0.0
         
         # Industry experience scoring (max 30 points)
@@ -364,7 +364,7 @@ class HaruPlateCompatibilityTool(BaseTool):
     def _get_recommendation_level(self, overall_score: float, values_score: float, technical_score: float) -> str:
         """Determines recommendation level based on scores."""
         if overall_score >= 85 and values_score >= 80:
-            return "Strongly Recommended - Excellent HaruPlate Fit"
+            return "Strongly Recommended - Excellent Business Fit"
         elif overall_score >= 75 and values_score >= 70:
             return "Recommended - Good Cultural Alignment"
         elif overall_score >= 65 and technical_score >= 70:
@@ -380,9 +380,9 @@ class HaruPlateCompatibilityTool(BaseTool):
         
         # Values alignment feedback
         if values_score >= 80:
-            feedback.append("🌱 Excellent alignment with HaruPlate's family-oriented values and mission")
+            feedback.append("🌱 Excellent alignment with Business's family-oriented values and mission")
         elif values_score >= 60:
-            feedback.append("🌿 Good potential for cultural fit with HaruPlate's values")
+            feedback.append("🌿 Good potential for cultural fit with Business's values")
         else:
             feedback.append("📝 Limited evidence of alignment with child nutrition and family values")
         
@@ -460,7 +460,7 @@ class HaruPlateCompatibilityTool(BaseTool):
             focus_areas.append("Assess technical competency through practical examples")
         
         focus_areas.extend([
-            "Understand motivation for joining HaruPlate mission",
+            "Understand motivation for joining Business mission",
             "Assess cultural fit with family business environment",
             "Evaluate commitment to Malaysian market expansion"
         ])
@@ -469,17 +469,17 @@ class HaruPlateCompatibilityTool(BaseTool):
 
 
 class JobPostingTool(BaseTool):
-    """Creates HaruPlate-branded job postings with sincere, family-oriented tone."""
+    """Creates Business-branded job postings with sincere, family-oriented tone."""
     
-    name: str = "HaruPlate Job Posting Creator"
-    description: str = """Creates compelling job descriptions that reflect HaruPlate's
+    name: str = "Business Job Posting Creator"
+    description: str = """Creates compelling job descriptions that reflect Business's
         sincere, family-oriented brand identity. Uses preferred terminology like
         'teammates' instead of 'candidates'. Emphasizes mission alignment and
         child nutrition focus. Optimized for Malaysian market."""
 
     def _run(self, position_title: str, requirements: str, location: str = "Malaysia") -> Dict[str, Any]:
         """
-        Creates a HaruPlate-branded job posting.
+        Creates a Business-branded job posting.
         
         Args:
             position_title: The job title/position
@@ -514,15 +514,15 @@ class JobPostingTool(BaseTool):
             return {"error": f"Job posting creation failed: {str(e)}"}
     
     def _create_engaging_title(self, position_title: str) -> str:
-        """Creates an engaging job title with HaruPlate branding."""
-        return f"🌱 Join Our Mission: {position_title} - HaruPlate Family"
+        """Creates an engaging job title with Business branding."""
+        return f"🌱 Join Our Mission: {position_title} - Business Family"
     
     def _create_mission_introduction(self) -> str:
         """Creates mission-focused introduction."""
         return """
         🌟 About Our Mission
         
-        At HaruPlate, we believe every child deserves the best possible nutrition to grow, learn, and thrive. 
+        At Business, we believe every child deserves the best possible nutrition to grow, learn, and thrive. 
         We're not just another company - we're a family-driven mission to transform child nutrition through 
         natural, carefully crafted products that parents can trust completely.
         
@@ -531,7 +531,7 @@ class JobPostingTool(BaseTool):
         """
     
     def _create_role_description(self, position_title: str, requirements: str) -> str:
-        """Creates role description with HaruPlate context."""
+        """Creates role description with Business context."""
         return f"""
         🎯 Your Mission as Our {position_title}
         
@@ -541,7 +541,7 @@ class JobPostingTool(BaseTool):
         
         In this role, you'll work alongside our dedicated team family to:
         - Support our mission of providing exceptional child nutrition
-        - Help expand HaruPlate's positive impact across Malaysian and Southeast Asian markets
+        - Help expand Business's positive impact across Malaysian and Southeast Asian markets
         - Contribute to product innovation that prioritizes natural ingredients and family values
         - Maintain our commitment to sincere, transparent communication with families
         
@@ -576,9 +576,9 @@ class JobPostingTool(BaseTool):
         """
     
     def _create_value_proposition(self) -> str:
-        """Creates what HaruPlate offers to teammates."""
+        """Creates what Business offers to teammates."""
         return """
-        🏠 What Our HaruPlate Family Offers You
+        🏠 What Our Business Family Offers You
         
         When you join our mission, you become part of a family business that truly values its people:
         
@@ -609,7 +609,7 @@ class JobPostingTool(BaseTool):
         return """
         💌 Ready to Join Our Mission?
         
-        We'd love to learn about you and understand why HaruPlate's mission speaks to your heart.
+        We'd love to learn about you and understand why Business's mission speaks to your heart.
         
         Please share with us:
         📄 Your experience and qualifications (CV/resume)
@@ -618,16 +618,16 @@ class JobPostingTool(BaseTool):
         
         We review every application with care and will respond personally to each prospective teammate.
         
-        Send your application to: [careers@haruplate.com]
-        Subject: "Excited to Join HaruPlate Mission - [Your Name]"
+        Send your application to: [careers@business.com]
+        Subject: "Excited to Join Business Mission - [Your Name]"
         
         🕒 We'll be in touch within 5 business days to continue our conversation!
         """
     
     def _create_culture_description(self) -> str:
-        """Creates description of HaruPlate's culture."""
+        """Creates description of Business's culture."""
         return """
-        🌺 Life at HaruPlate Family
+        🌺 Life at Business Family
         
         Our workplace reflects the same values we put into our products:
         - Sincere relationships built on trust and mutual respect
@@ -655,7 +655,7 @@ class JobPostingTool(BaseTool):
             return f"""
             📍 Location: {location}
             
-            This role offers the opportunity to represent HaruPlate's mission and values in {location}, 
+            This role offers the opportunity to represent Business's mission and values in {location}, 
             contributing to our expansion while maintaining our family-oriented approach to business.
             """
     
@@ -679,7 +679,7 @@ class JobPostingTool(BaseTool):
 {components['application_process']}
 
 ---
-🌱 HaruPlate Family - Nurturing Children, Strengthening Families
+🌱 Business Family - Nurturing Children, Strengthening Families
 "Every child deserves the best possible nutrition to grow, learn, and thrive."
         """.strip()
 
@@ -687,9 +687,9 @@ class JobPostingTool(BaseTool):
 class EmailDraftTool(BaseTool):
     """Creates warm, personalized email drafts for candidate communication."""
     
-    name: str = "HaruPlate Email Communication Tool"
+    name: str = "Business Email Communication Tool"
     description: str = """Drafts personalized, warm emails for candidate communication
-        that reflect HaruPlate's sincere, family-oriented values. Creates initial
+        that reflect Business's sincere, family-oriented values. Creates initial
         outreach, interview invitations, and follow-up communications."""
 
     def _run(self, email_type: str, candidate_name: str, position_title: str, 
@@ -730,12 +730,12 @@ class EmailDraftTool(BaseTool):
     
     def _create_initial_outreach(self, candidate_name: str, position_title: str, details: str) -> Dict[str, str]:
         """Creates initial outreach email."""
-        subject = f"🌱 We're impressed by your passion, {candidate_name} - HaruPlate Family"
+        subject = f"🌱 We're impressed by your passion, {candidate_name} - Business Family"
         
         body = f"""
 Dear {candidate_name},
 
-Thank you for sharing your interest in joining the HaruPlate family as our {position_title}. 
+Thank you for sharing your interest in joining the Business family as our {position_title}. 
 We were genuinely impressed by your background and the values that shine through your application.
 
 {details if details else "Your experience and passion for meaningful work caught our attention immediately."}
@@ -760,7 +760,7 @@ Looking forward to our conversation!
 Warm regards,
 
 [Your Name]
-HaruPlate Family
+Business Family
 "Nurturing Children, Strengthening Families"
 
 P.S. Feel free to explore more about our mission at [website] - we'd love to hear your thoughts!
@@ -775,7 +775,7 @@ P.S. Feel free to explore more about our mission at [website] - we'd love to hea
         body = f"""
 Dear {candidate_name},
 
-We're excited to continue our conversation about you joining the HaruPlate family as our {position_title}!
+We're excited to continue our conversation about you joining the Business family as our {position_title}!
 
 After reviewing your application and our initial discussion, we're even more convinced that your 
 values and experience align beautifully with our mission of providing exceptional child nutrition 
@@ -794,13 +794,13 @@ This will be a warm, conversational interview where we'll discuss:
 - Your passion for child nutrition and family values
 - How your experience can contribute to our mission
 - Our family business culture and growth opportunities
-- Your questions about life at HaruPlate
+- Your questions about life at Business
 
 📝 How to Prepare:
 - Think about specific examples of your values-driven work
 - Consider questions about our mission and company culture
 - Review our website to understand our products and philosophy
-- Prepare to share why HaruPlate's mission speaks to your heart
+- Prepare to share why Business's mission speaks to your heart
 
 If this time doesn't work for you, please let us know your preferred times and we'll gladly adjust.
 
@@ -809,7 +809,7 @@ We're genuinely looking forward to learning more about you and sharing our story
 With warm anticipation,
 
 [Your Name]
-HaruPlate Family
+Business Family
 "Nurturing Children, Strengthening Families"
 
 P.S. If you have any questions before our meeting, please don't hesitate to reach out!
@@ -824,7 +824,7 @@ P.S. If you have any questions before our meeting, please don't hesitate to reac
         body = f"""
 Dear {candidate_name},
 
-Thank you so much for taking the time to speak with us about joining our HaruPlate family 
+Thank you so much for taking the time to speak with us about joining our Business family 
 as our {position_title}. It was truly wonderful getting to know you and understanding your 
 passion for meaningful work that makes a difference in families' lives.
 
@@ -836,14 +836,14 @@ touch with our decision within the next [timeframe]. We want to ensure we make t
 that's best for both you and our family business.
 
 In the meantime, please don't hesitate to reach out if you have any additional questions 
-about HaruPlate, our mission, or the role. We're always happy to continue the conversation.
+about Business, our mission, or the role. We're always happy to continue the conversation.
 
 Thank you again for your interest in our mission and for sharing your story with us.
 
 With appreciation and warm regards,
 
 [Your Name]
-HaruPlate Family
+Business Family
 "Nurturing Children, Strengthening Families"
 
 P.S. Regardless of our decision, we're genuinely grateful to have met someone who shares 
@@ -859,7 +859,7 @@ our values and commitment to making a positive impact!
         body = f"""
 Dear {candidate_name},
 
-Thank you so much for your interest in joining the HaruPlate family as our {position_title} 
+Thank you so much for your interest in joining the Business family as our {position_title} 
 and for sharing your time and story with us during our conversations.
 
 After careful consideration and many thoughtful discussions, we've decided to move forward 
@@ -871,7 +871,7 @@ Please know that this decision in no way diminishes our respect for your talents
 sincere way you approach your work. The dedication to family values and positive impact 
 that you shared with us was truly inspiring.
 
-As HaruPlate continues to grow and expand our mission across Southeast Asia, we may have 
+As Business continues to grow and expand our mission across Southeast Asia, we may have 
 opportunities in the future that could be an even better fit for your unique talents. 
 We'd be honored to keep in touch and reach out if such an opportunity arises.
 
@@ -879,13 +879,13 @@ We sincerely wish you all the best in finding a role where your values and skill
 make the meaningful difference you're seeking. Any organization would be fortunate to 
 have someone with your integrity and passion on their team.
 
-Thank you again for considering HaruPlate as a place to contribute your talents. We're 
+Thank you again for considering Business as a place to contribute your talents. We're 
 grateful for the opportunity to have met you.
 
 With warm wishes for your continued success,
 
 [Your Name]
-HaruPlate Family
+Business Family
 "Nurturing Children, Strengthening Families"
 
 P.S. We encourage you to follow our journey as we continue working to provide better 
@@ -901,7 +901,7 @@ class ZoomSchedulingTool(BaseTool):
     name: str = "Zoom Interview Scheduling Tool"
     description: str = """Creates and schedules Zoom meetings for candidate interviews.
         Generates meeting links, handles timezone coordination for Malaysian market,
-        and sends calendar invitations with HaruPlate branding."""
+        and sends calendar invitations with Business branding."""
 
     def __init__(self):
         super().__init__()
@@ -936,7 +936,7 @@ class ZoomSchedulingTool(BaseTool):
             # Create meeting via Zoom API
             meeting_data = self._create_zoom_meeting(jwt_token, meeting_title, start_time, duration_minutes, timezone)
             
-            # Format response with HaruPlate branding
+            # Format response with Business branding
             formatted_response = self._format_meeting_response(meeting_data, participant_email)
             
             logger.info(f"Zoom meeting created: {meeting_title}")
@@ -1017,13 +1017,13 @@ class ZoomSchedulingTool(BaseTool):
             "start_time": start_time,
             "duration": duration,
             "timezone": "Asia/Kuala_Lumpur",
-            "password": "HaruPlate2025",
+            "password": "Business2025",
             "calendar_invitation": self._generate_calendar_invitation(title, start_time, duration, join_url),
             "simulation_mode": True
         }
     
     def _format_meeting_response(self, meeting_data: Dict[str, Any], participant_email: str) -> Dict[str, Any]:
-        """Formats Zoom API response with HaruPlate branding."""
+        """Formats Zoom API response with Business branding."""
         return {
             "meeting_created": True,
             "meeting_id": meeting_data.get('id'),
@@ -1048,9 +1048,9 @@ class ZoomSchedulingTool(BaseTool):
     def _generate_calendar_invitation(self, title: str, start_time: str, duration: int, join_url: str) -> str:
         """Generates calendar invitation text."""
         return f"""
-🌱 HaruPlate Interview: {title}
+🌱 Business Interview: {title}
 
-Join us for a warm conversation about joining the HaruPlate family!
+Join us for a warm conversation about joining the Business family!
 
 📅 When: {start_time}
 ⏰ Duration: {duration} minutes
@@ -1060,7 +1060,7 @@ Join us for a warm conversation about joining the HaruPlate family!
 
 🌿 About This Meeting:
 This is your opportunity to share your story and learn about how you can contribute 
-to HaruPlate's mission of providing exceptional nutrition for children through 
+to Business's mission of providing exceptional nutrition for children through 
 natural, family-trusted products.
 
 📝 What to Prepare:
@@ -1070,14 +1070,14 @@ natural, family-trusted products.
 
 We're looking forward to getting to know you better!
 
-HaruPlate Family
+Business Family
 "Nurturing Children, Strengthening Families"
         """.strip()
     
     def _create_meeting_instructions(self, join_url: str) -> str:
         """Creates user-friendly meeting instructions."""
         return f"""
-🎥 How to Join Your HaruPlate Interview
+🎥 How to Join Your Business Interview
 
 1. Click this link 5 minutes before our scheduled time: {join_url}
 2. If prompted, download the Zoom app (recommended) or join via web browser
@@ -1099,7 +1099,7 @@ Looking forward to our conversation! 🌱
 if __name__ == "__main__":
     # Example usage
     cv_tool = CVAnalysisTool()
-    compatibility_tool = HaruPlateCompatibilityTool()
+    compatibility_tool = BusinessCompatibilityTool()
     
     # Simulate CV analysis
     sample_analysis = {
@@ -1122,9 +1122,9 @@ if __name__ == "__main__":
     print("🎯 Compatibility Score Result:", score_result)
 
 
-# Tool aliases for HaruPlate crew compatibility
-HaruPlateJobPostingTool = JobPostingTool
-HaruPlateWebResearchTool = CVAnalysisTool  # Web research functionality within CV analysis
+# Tool aliases for Business crew compatibility
+BusinessJobPostingTool = JobPostingTool
+BusinessWebResearchTool = CVAnalysisTool  # Web research functionality within CV analysis
 BrandComplianceTool = JobPostingTool  # Brand compliance checking within job posting
-ValuesAlignmentTool = HaruPlateCompatibilityTool
-HaruPlateTemplatesTool = EmailDraftTool
+ValuesAlignmentTool = BusinessCompatibilityTool
+BusinessTemplatesTool = EmailDraftTool

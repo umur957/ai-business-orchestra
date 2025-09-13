@@ -1,5 +1,5 @@
 """
-HaruPlate Document Management Tools
+Business Document Management Tools
 Document archival, OCR processing, and file categorization tools.
 """
 
@@ -15,10 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 class DocumentArchivistTool(BaseTool):
-    """Archives and organizes documents for HaruPlate."""
+    """Archives and organizes documents for Business."""
     
     name: str = "Document Archivist Tool"
-    description: str = "Organizes documents with HaruPlate naming standards"
+    description: str = "Organizes documents with Business naming standards"
 
     def _run(self, document_path: str, category: str = "general") -> Dict[str, Any]:
         return {"status": "simulated", "message": "Document archived successfully"}
@@ -44,7 +44,7 @@ class FileCategoricationTool(BaseTool):
         return {"category": "regulatory", "confidence": 0.9}
 
 
-# Tool aliases for HaruPlate crew compatibility
+# Tool aliases for Business crew compatibility
 DocumentCategorizationTool = FileCategoricationTool
-HaruPlateFilingTool = DocumentArchivistTool
+BusinessFilingTool = DocumentArchivistTool
 ContentAnalysisTool = OCRProcessingTool

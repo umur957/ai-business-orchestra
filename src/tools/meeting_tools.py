@@ -1,5 +1,5 @@
 """
-HaruPlate Meeting Management Tools
+Business Meeting Management Tools
 Calendar integration, meeting research, and preparation tools.
 """
 
@@ -51,7 +51,7 @@ class MeetingPrepTool(BaseTool):
         }
 
 
-# Tool aliases for HaruPlate crew compatibility
+# Tool aliases for Business crew compatibility
 CalendarAnalysisTool = CalendarIntegrationTool
 BriefingGeneratorTool = MeetingPrepTool
 ParticipantAnalysisTool = MeetingResearchTool

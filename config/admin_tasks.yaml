@@ -3,17 +3,17 @@ tasks:
     description: |
       Automatically process invoices from suppliers using the n8n-invoice-automation workflow pattern:
       
-      1. GMAIL RETRIEVAL: Check HaruPlate's designated email for new invoices (PDF attachments)
+      1. GMAIL RETRIEVAL: Check Business's designated email for new invoices (PDF attachments)
       2. PDF PROCESSING: Extract text from invoice PDFs using OCR technology
       3. AI DATA PARSING: Use AI to convert raw text into structured JSON with:
          - Invoice summary (supplier, amount, date, invoice number)
-         - Detailed line items with HaruPlate categorization
+         - Detailed line items with Business categorization
          - Malaysian supplier identification and special handling
       4. GOOGLE SHEETS INTEGRATION: Save data to two sheets:
          - "Invoices" tab: Summary information
          - "Invoice_Items" tab: Line-item details
       5. ARCHIVAL: Save PDF to Google Drive with proper naming convention
-      6. EMAIL LABELING: Mark processed emails with "haruplate-processed" label
+      6. EMAIL LABELING: Mark processed emails with "business-processed" label
       
       Special focus on Malaysian suppliers and child nutrition product categories.
       
@@ -27,7 +27,7 @@ tasks:
       - Google Drive archival status with file locations
       - Malaysian supplier special processing notes
       - Any errors or items requiring human review
-      - HaruPlate expense categorization summary (ingredients, marketing, operations, etc.)
+      - Business expense categorization summary (ingredients, marketing, operations, etc.)
     agent: financial_document_processor
     
   organize_documents_task:
@@ -37,14 +37,14 @@ tasks:
       
       1. DOCUMENT SCANNING: Analyze files in specified folders (Google Drive, local storage)
       2. CONTENT EXTRACTION: Use OCR for images/PDFs, read text from documents
-      3. AI CATEGORIZATION: Determine document category with HaruPlate-specific categories:
+      3. AI CATEGORIZATION: Determine document category with Business-specific categories:
          - Child nutrition research and studies
          - Malaysian market analysis and insights
          - Supplier contracts and agreements
          - Product development documentation
          - Regulatory compliance files
          - Marketing materials and brand guidelines
-      4. INTELLIGENT NAMING: Generate descriptive filenames following HaruPlate conventions
+      4. INTELLIGENT NAMING: Generate descriptive filenames following Business conventions
       5. AUTOMATED FILING: Move files to appropriate folders with proper structure
       
       High-confidence documents are automatically processed; low-confidence files are flagged for review.
@@ -58,7 +58,7 @@ tasks:
       - Successfully renamed and moved files list
       - Files requiring human review (low confidence categorization)
       - Folder structure optimization recommendations
-      - HaruPlate-specific document insights (nutrition research trends, supplier patterns, etc.)
+      - Business-specific document insights (nutrition research trends, supplier patterns, etc.)
       - Archive completion status with organized folder structure
     agent: digital_archivist
     
@@ -72,8 +72,8 @@ tasks:
          - Malaysian market developments
          - Competitor analysis in natural products space
          - Regulatory updates affecting family nutrition products
-      3. PARTICIPANT RESEARCH: Analyze meeting participants' backgrounds and HaruPlate interaction history
-      4. INTERNAL DOCUMENT REVIEW: Search Google Drive for relevant HaruPlate documents:
+      3. PARTICIPANT RESEARCH: Analyze meeting participants' backgrounds and Business interaction history
+      4. INTERNAL DOCUMENT REVIEW: Search Google Drive for relevant Business documents:
          - Previous meeting minutes on similar topics
          - Research reports and market analysis
          - Product development updates
@@ -88,7 +88,7 @@ tasks:
       Complete meeting preparation brief including:
       - Meeting overview and objectives summary
       - Key industry trends relevant to discussion (child nutrition focus)
-      - Participant profiles and HaruPlate relationship context
+      - Participant profiles and Business relationship context
       - Relevant internal documents summary with key excerpts
       - Malaysian market context and cultural considerations
       - Recommended talking points and strategic questions
@@ -100,12 +100,12 @@ tasks:
   analyze_business_data_task:
     description: |
       Answer natural language business questions by analyzing Excel/Google Sheets data with focus on 
-      HaruPlate's markets and products:
+      Business's markets and products:
       
       1. DATA SOURCE IDENTIFICATION: Locate relevant spreadsheets (sales, inventory, market data)
       2. QUERY PROCESSING: Interpret natural language questions into data analysis requirements
       3. DATA ANALYSIS: Perform calculations, trend analysis, and insights extraction
-      4. MARKET CONTEXT: Apply HaruPlate business context to findings:
+      4. MARKET CONTEXT: Apply Business business context to findings:
          - Child nutrition product performance
          - Singapore and Malaysian market metrics
          - Seasonal trends in family-oriented products

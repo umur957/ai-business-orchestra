@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-HaruPlate HR Expert Crew
+Business HR Expert Crew
 Based on crewAI-examples/crews/recruitment pattern
-Specialized crew for HaruPlate's recruitment and HR processes with brand-specific customization.
+Specialized crew for Business's recruitment and HR processes with brand-specific customization.
 """
 
 from crewai import Agent, Task, Crew
@@ -17,18 +17,18 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 @CrewBase
-class HaruPlateHRCrew:
+class BusinessHRCrew:
     """
-    HaruPlate HR Expert Crew
-    Manages recruitment, candidate analysis, and communications with HaruPlate's specific brand requirements.
+    Business HR Expert Crew
+    Manages recruitment, candidate analysis, and communications with Business's specific brand requirements.
     """
     
     # Load configurations
-    agents_config = 'config/haruplate_hr_agents.yaml'
-    tasks_config = 'config/haruplate_hr_tasks.yaml'
+    agents_config = 'config/hr_agents.yaml'
+    tasks_config = 'config/hr_tasks.yaml'
     
     def __init__(self):
-        """Initialize the HR crew with HaruPlate-specific tools."""
+        """Initialize the HR crew with Business-specific tools."""
         self.config_path = Path(__file__).parent.parent.parent / "config"
         self._load_configurations()
         
@@ -36,8 +36,8 @@ class HaruPlateHRCrew:
         """Load agent and task configurations."""
         # Config files are in the project root config directory
         project_root = Path(__file__).parent.parent.parent
-        agents_file = project_root / "config" / "haruplate_hr_agents.yaml"
-        tasks_file = project_root / "config" / "haruplate_hr_tasks.yaml"
+        agents_file = project_root / "config" / "hr_agents.yaml"
+        tasks_file = project_root / "config" / "hr_tasks.yaml"
         
         if agents_file.exists():
             try:
@@ -64,7 +64,7 @@ class HaruPlateHRCrew:
     @agent
     def recruitment_strategist(self) -> Agent:
         """
-        HaruPlate Recruitment Strategist - Creates job descriptions following HaruPlate brand guidelines.
+        Business Recruitment Strategist - Creates job descriptions following Business brand guidelines.
         Based on crewAI recruitment example 'researcher' agent pattern.
         """
         config = self.agents_config['agents']['recruitment_strategist']
@@ -81,7 +81,7 @@ class HaruPlateHRCrew:
     @agent
     def profile_analyst(self) -> Agent:
         """
-        HaruPlate Profile Analyst - Analyzes candidates using 60/40 scoring system.
+        Business Profile Analyst - Analyzes candidates using 60/40 scoring system.
         Based on crewAI recruitment example 'matcher' agent pattern.
         """
         config = self.agents_config['agents']['profile_analyst']
@@ -98,7 +98,7 @@ class HaruPlateHRCrew:
     @agent
     def communications_coordinator(self) -> Agent:
         """
-        HaruPlate Communications Coordinator - Handles outreach and scheduling.
+        Business Communications Coordinator - Handles outreach and scheduling.
         Based on crewAI recruitment example 'communicator' agent pattern.
         """
         config = self.agents_config['agents']['communications_coordinator']
@@ -115,7 +115,7 @@ class HaruPlateHRCrew:
     @agent
     def quality_control_specialist(self) -> Agent:
         """
-        HaruPlate Quality Control Specialist - Ensures brand compliance.
+        Business Quality Control Specialist - Ensures brand compliance.
         Based on crewAI self_evaluation_loop_flow pattern.
         """
         config = self.agents_config['agents']['quality_control_specialist']
@@ -131,7 +131,7 @@ class HaruPlateHRCrew:
     
     @task
     def create_job_description_task(self) -> Task:
-        """Task to create HaruPlate-compliant job descriptions."""
+        """Task to create Business-compliant job descriptions."""
         config = self.tasks_config['tasks']['create_job_description_task']
         
         return Task(
@@ -142,7 +142,7 @@ class HaruPlateHRCrew:
     
     @task
     def analyze_candidate_profiles_task(self) -> Task:
-        """Task to analyze candidates using HaruPlate's 60/40 scoring system."""
+        """Task to analyze candidates using Business's 60/40 scoring system."""
         config = self.tasks_config['tasks']['analyze_candidate_profiles_task']
         
         return Task(
@@ -164,7 +164,7 @@ class HaruPlateHRCrew:
     
     @task
     def quality_assurance_review_task(self) -> Task:
-        """Task to review all outputs for HaruPlate brand compliance."""
+        """Task to review all outputs for Business brand compliance."""
         config = self.tasks_config['tasks']['quality_assurance_review_task']
         
         return Task(
@@ -176,7 +176,7 @@ class HaruPlateHRCrew:
     @crew
     def crew(self) -> Crew:
         """
-        Creates the HaruPlate HR Expert Crew with sequential workflow.
+        Creates the Business HR Expert Crew with sequential workflow.
         Based on crewAI recruitment crew pattern.
         """
         return Crew(
@@ -190,13 +190,13 @@ class HaruPlateHRCrew:
         """Get tools for recruitment strategist."""
         try:
             from ..tools.recruitment_tools import (
-                HaruPlateJobPostingTool,
-                HaruPlateWebResearchTool,
+                BusinessJobPostingTool,
+                BusinessWebResearchTool,
                 BrandComplianceTool
             )
             return [
-                HaruPlateJobPostingTool(),
-                HaruPlateWebResearchTool(),
+                BusinessJobPostingTool(),
+                BusinessWebResearchTool(),
                 BrandComplianceTool()
             ]
         except Exception as e:
@@ -208,12 +208,12 @@ class HaruPlateHRCrew:
         try:
             from ..tools.recruitment_tools import (
                 CVAnalysisTool,
-                HaruPlateCompatibilityTool,
+                BusinessCompatibilityTool,
                 ValuesAlignmentTool
             )
             return [
                 CVAnalysisTool(),
-                HaruPlateCompatibilityTool(),
+                BusinessCompatibilityTool(),
                 ValuesAlignmentTool()
             ]
         except Exception as e:
@@ -226,7 +226,7 @@ class HaruPlateHRCrew:
             from ..tools.recruitment_tools import (
                 EmailDraftTool,
                 ZoomSchedulingTool,
-                HaruPlateTemplatesTool
+                BusinessTemplatesTool
             )
             from ..tools.integration_tools import (
                 GmailIntegrationTool,
@@ -235,7 +235,7 @@ class HaruPlateHRCrew:
             return [
                 EmailDraftTool(),
                 ZoomSchedulingTool(),
-                HaruPlateTemplatesTool(),
+                BusinessTemplatesTool(),
                 GmailIntegrationTool(),
                 ZoomAPITool()
             ]
@@ -246,14 +246,14 @@ class HaruPlateHRCrew:
     def _get_quality_tools(self) -> List:
         """Get tools for quality control specialist."""
         try:
-            from ..tools.haruplate_tools import (
+            from ..tools.business_tools import (
                 BrandComplianceTool,
-                HaruPlateStyleChecker,
+                BusinessStyleChecker,
                 QualityAssuranceTool
             )
             return [
                 BrandComplianceTool(),
-                HaruPlateStyleChecker(),
+                BusinessStyleChecker(),
                 QualityAssuranceTool()
             ]
         except Exception as e:
@@ -262,7 +262,7 @@ class HaruPlateHRCrew:
     
     def process_request(self, request: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Process a recruitment request through the HaruPlate HR workflow.
+        Process a recruitment request through the Business HR workflow.
         
         Args:
             request: The recruitment request text
@@ -271,7 +271,7 @@ class HaruPlateHRCrew:
         Returns:
             Dict containing the crew's processing results
         """
-        logger.info(f"👥 HaruPlate HR Expert Crew processing request...")
+        logger.info(f"👥 Business HR Expert Crew processing request...")
         
         try:
             # Prepare inputs for the crew
@@ -291,7 +291,7 @@ class HaruPlateHRCrew:
             # Execute the crew workflow
             result = self.crew().kickoff(inputs=crew_inputs)
             
-            # Format results for HaruPlate Orchestra
+            # Format results for Business Orchestra
             formatted_result = {
                 "status": "completed",
                 "crew_type": "hr_expert",
@@ -299,7 +299,7 @@ class HaruPlateHRCrew:
                 "approval_required": True,  # HR always requires approval
                 "approval_message": self._generate_approval_message(result),
                 "next_steps": self._generate_next_steps(result),
-                "haruplate_compliance": self._check_compliance(result),
+                "business_compliance": self._check_compliance(result),
                 "processing_metadata": {
                     "request_processed": True,
                     "agents_involved": ["recruitment_strategist", "profile_analyst", "communications_coordinator", "quality_control_specialist"],
@@ -308,7 +308,7 @@ class HaruPlateHRCrew:
                 }
             }
             
-            logger.info(f"✅ HaruPlate HR Expert Crew completed successfully")
+            logger.info(f"✅ Business HR Expert Crew completed successfully")
             return formatted_result
             
         except Exception as e:
@@ -324,12 +324,12 @@ class HaruPlateHRCrew:
     def _generate_approval_message(self, result: Any) -> str:
         """Generate human approval message for HR results."""
         return (
-            f"🎼 HaruPlate HR Expert Crew has completed recruitment processing.\n\n"
+            f"🎼 Business HR Expert Crew has completed recruitment processing.\n\n"
             f"Our 4 specialized agents have worked together to:\n"
             f"• Create a brand-compliant job description reflecting our family values\n"
             f"• Analyze potential teammates using our 60/40 scoring system\n"
             f"• Prepare personalized, warm outreach communications\n"
-            f"• Ensure complete HaruPlate brand compliance\n\n"
+            f"• Ensure complete Business brand compliance\n\n"
             f"Please review the results and approve to proceed with contacting our top teammate candidates."
         )
     
@@ -339,12 +339,12 @@ class HaruPlateHRCrew:
             "Review job description and top teammate recommendations",
             "Approve personalized outreach emails for selected teammates",
             "Schedule Zoom interviews with priority candidates",
-            "Prepare HaruPlate-specific interview questions focusing on values alignment",
+            "Prepare Business-specific interview questions focusing on values alignment",
             "Coordinate with Communications Coordinator for follow-up sequence"
         ]
     
     def _check_compliance(self, result: Any) -> Dict[str, Any]:
-        """Check HaruPlate brand compliance."""
+        """Check Business brand compliance."""
         return {
             "terminology_check": True,  # Uses 'teammates' not 'candidates'
             "tone_compliance": True,    # Sincere, family-oriented tone
@@ -354,14 +354,14 @@ class HaruPlateHRCrew:
         }
 
 
-def create_haruplate_hr_crew() -> HaruPlateHRCrew:
-    """Factory function to create HaruPlate HR Expert Crew."""
-    return HaruPlateHRCrew()
+def create_business_hr_crew() -> BusinessHRCrew:
+    """Factory function to create Business HR Expert Crew."""
+    return BusinessHRCrew()
 
 
 if __name__ == "__main__":
     # Test the crew
-    hr_crew = create_haruplate_hr_crew()
+    hr_crew = create_business_hr_crew()
     
     test_request = "We need to find an experienced Digital Marketing Specialist for the Malaysian market who understands child nutrition."
     test_context = {

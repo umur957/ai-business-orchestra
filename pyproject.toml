@@ -3,11 +3,11 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "haruplate-orchestra"
+name = "ai-business-orchestra"
 version = "0.1.0"
-description = "HaruPlate HR & Admin Intelligence Orchestra - AI Agent System"
+description = "AI Business Orchestra - Multi-Agent Business Automation System"
 authors = [
-    { name = "HaruPlate Team", email = "team@haruplate.com" }
+    { name = "UMUR KIZILDAS", email = "umur@kizildas.com" }
 ]
 dependencies = [
     "crewai>=0.80.0",
@@ -32,7 +32,7 @@ readme = "README.md"
 license = { text = "MIT" }
 
 [project.scripts]
-haruplate-orchestra = "haruplate_orchestra.main:kickoff"
+business-orchestra = "business_orchestra_main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
